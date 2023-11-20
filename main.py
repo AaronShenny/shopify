@@ -12,11 +12,6 @@ database = {
     },
     
 }
-
-
-
-
-
 def create_user():
     print('[Sorry, Dur to the limited knowlegde, Now creating account will be deleted after the program closes. Use the default username and password]')
     print('Creating a user account..')
