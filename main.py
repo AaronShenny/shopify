@@ -6,10 +6,11 @@ database = {
             'password' : '123'
         },
         'user':{
-            name : 'user',
-            password :'root'
+            'name' : 'user',
+            'password' :'root'
         }
-    }
+    },
+    
 }
 
 
@@ -31,6 +32,21 @@ def create_user():
         }
     except Exception as Error:
         print('Error : ', Error)
-print(database)
-create_user()
-print(database)
+
+def sign_in():
+    username = input('Enter your username : ')
+    try:
+        if username in database['user']:
+            password1 = getpass.getpass()
+            try:
+                if password1 == database['user'][username]['password']:
+                    print('Account logined..')
+                    print(f'Welcome {username}')
+            except:
+                print('Incorrect password')
+            print('found')
+    except:
+        print('Account not Found')
+    
+    
+sign_in()
