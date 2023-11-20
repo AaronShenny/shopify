@@ -8,6 +8,10 @@ database = {
         'user':{
             name : 'user',
             password :'root'
+        },
+        'user1':{
+            name : 'user1',
+            password :'root1'
         }
     }
 }
