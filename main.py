@@ -6,8 +6,11 @@ database = {
             'password' : '123'
         },
         'user':{
+
             'name' : 'user',
             'password' :'root'
+
+        
         }
     },
     
@@ -28,6 +31,7 @@ def create_user():
     except Exception as Error:
         print('Error : ', Error)
 
+
 def sign_in():
     username = input('Enter your username : ')
     try:
@@ -43,5 +47,3 @@ def sign_in():
     except:
         print('Account not Found')
     
-    
-sign_in()
