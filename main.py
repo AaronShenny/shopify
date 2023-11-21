@@ -54,12 +54,17 @@ database = {
             'stock':17
         
         },
-        'Corn':{
+        'corn':{
             'name':'Corn',
-            'price':'35',
+            'price':'35RS',
             'stock':19
-        }
-        
+        },
+        'coconut':{
+            'name':'Coconut',
+            'price':'37RS',
+            'stock':16
+        },
+
 
     }
     
