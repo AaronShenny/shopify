@@ -19,17 +19,20 @@ def create_user():
     print('[Sorry, Dur to the limited knowlegde, Now creating account will be deleted after the program closes. Use the default username and password]')
     print('Creating a user account..')
     name = input('Enter your username : ')
-    try: 
-        password = getpass.getpass()
-    except Exception as Error:
-        print('Error : ', Error)
-    try:
-        database['user'][name] = {
-            'name': name,
-            'password': password
-        }
-    except Exception as Error:
-        print('Error : ', Error)
+    if name in database['user']:
+        print('Same user has been found in our databse. Please login ...')
+    else:
+        try: 
+            password = getpass.getpass()
+        except Exception as Error:
+            print('Error : ', Error)
+        try:
+            database['user'][name] = {
+                'name': name,
+                'password': password
+            }
+        except Exception as Error:
+            print('Error : ', Error)
 
 
 def sign_in():
@@ -47,3 +50,10 @@ def sign_in():
     except:
         print('Account not Found')
     
+
+while True:
+    ch = int(input('Enter the choice'))
+    if ch == 1:
+        sign_in()
+    elif ch == 2:
+        create_user()
