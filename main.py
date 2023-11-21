@@ -36,7 +36,17 @@ database = {
         'beetroot':{
             'name':'Beetroot',
             'price':'34RS',
-            'stock':
+            'stock':14
+        },
+        'potato':{
+            'name':'Potato',
+            'price':'40RS',
+            'stock':16
+        },
+        'cabbage':{
+            'name':'Cabbage',
+            'price':'25RS',
+            'stock': 13
         }
 
     }
