@@ -64,6 +64,16 @@ database = {
             'price':'37RS',
             'stock':16
         },
+        'ginger':{
+            'name':'Ginger',
+            'price':'111RS',
+            'stock':20
+        },
+        'elephantyam':{
+            'name':'Elephant Yam',
+            'price':'34RS',
+            'stock':15
+        }
 
 
     }
