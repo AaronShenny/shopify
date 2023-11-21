@@ -73,7 +73,8 @@ database = {
             'name':'Elephant Yam',
             'price':'34RS',
             'stock':15
-        }
+        },
+        
 
 
     }
