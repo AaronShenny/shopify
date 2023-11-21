@@ -21,7 +21,7 @@ database = {
         'tomato' : {
             'name' : 'Tomato',
             'price' : '48RS',
-            'stock' : '10'
+            'stock' : 10
         }
 
     }
