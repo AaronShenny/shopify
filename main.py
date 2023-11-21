@@ -9,12 +9,10 @@ database = {
 
             'name' : 'user',
             'password' :'root'
-
-        
         }
     },
     'vegetables':{
-        
+
     }
     
 }
