@@ -11,6 +11,12 @@ database = {
             'password' :'root'
 
         
+        },
+        'aswinaravind27':{
+            'name' : 'Aswin Aravind',
+            'password':'aswi'
+
+          
         }
     },
     'vegetables':{
