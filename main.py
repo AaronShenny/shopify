@@ -28,6 +28,16 @@ database = {
             'price':'79RS',
             'stock':15
         },
+        'greenchilli':{
+            'name':'Green chilli',
+            'price':'46RS',
+            'stock':12
+        },
+        'beetroot':{
+            'name':'Beetroot',
+            'price':'34RS',
+            'stock':
+        }
 
     }
     
