@@ -65,7 +65,7 @@ def sign_in():
 login = False
 
 while True:
-    ch = int(input('Enter the choice'))
+    ch = int(input('Enter the choice : '))
     if ch == 1:
         sign_in()
         break
