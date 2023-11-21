@@ -18,6 +18,11 @@ database = {
         }
     },
     'vegetables':{
+        'tomato' : {
+            'name' : 'Tomato',
+            'price' : '48RS',
+            'stock' : '10'
+        }
 
     }
     
