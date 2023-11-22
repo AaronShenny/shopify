@@ -102,6 +102,7 @@ def create_user(name):
             }
         except Exception as Error:
             print('Error : ', Error)
+        sign_in()
 
 
 def sign_in():
@@ -117,13 +118,18 @@ def sign_in():
     else:  
         time.sleep(1)
         print('Account not Found')
+        time.sleep(1)
         print('Create an account...')
-        create_user(username)
+        time.sleep(1)
+        name  = input('Full name : ')
+        create_user(name)
+        
 
 
 login = False
 
 while True:
+    print('PLEASE LOGIN...')
     ch = input('LOG-IN/SIGN-UP : ').lower()
     if ch == 'login' or ch == 'log-in' or ch == '1':
         time.sleep(1)
