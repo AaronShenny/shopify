@@ -7,7 +7,7 @@ database = {
         },
         'user':{
 
-            'name' : 'user',
+            'name' : 'Guest',
             'password' :'root'
         },
         'aswinaravind27':{
@@ -85,8 +85,8 @@ database = {
 def create_user(name):
     print('[Sorry, Dur to the limited knowlegde, Now creating account will be deleted after the program closes. Use the default username and password]')
     print('Creating a user account..')
-    #name = input('Enter your username : ')
-    if name in database['user']:
+    username = input('Username : ')
+    if username in database['user']:
         print('Same user has been found in our databse. Please login ...')
     else:
         try: 
@@ -94,7 +94,7 @@ def create_user(name):
         except Exception as Error:
             print('Error : ', Error)
         try:
-            database['user'][name] = {
+            database['user'][username] = {
                 'name': name,
                 'password': password
             }
@@ -108,7 +108,7 @@ def sign_in():
         password1 = getpass.getpass()   
         if password1 == database['user'][username]['password']:
             print('Account logined..')
-            print(f'Welcome {username}')
+            print('Welcome',database['user'][username]['name'])
         else:
             print('Incorrect Password...')
     else:  
@@ -125,6 +125,6 @@ while True:
         sign_in()
         break
     elif ch == 2:
-        name = input('Enter your username : ')
+        name = input('Full Name : ')
         create_user(name)
-        
+        print(database)
