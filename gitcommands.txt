@@ -1,0 +1,6 @@
+git pull = from remort to local
+
+git add .
+git commit -m "<message>" 
+git push 
+= from local to remort
