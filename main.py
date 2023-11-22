@@ -77,8 +77,10 @@ database = {
         
 
 
+    },
+    'fruits':{
+
     }
-    
 }
 def create_user(name):
     print('[Sorry, Dur to the limited knowlegde, Now creating account will be deleted after the program closes. Use the default username and password]')
