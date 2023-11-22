@@ -115,6 +115,7 @@ def sign_in():
         else:
             print('Incorrect Password...')
     else:  
+        time.sleep(1)
         print('Account not Found')
         print('Create an account...')
         create_user(username)
@@ -125,6 +126,7 @@ login = False
 while True:
     ch = input('LOG-IN/SIGN-UP : ').lower()
     if ch == 'login' or ch == 'log-in' or ch == '1':
+        time.sleep(1)
         sign_in()
         break
     elif ch == 'signup' or ch == 'sign-up' or ch == '2':
