@@ -1,4 +1,6 @@
 import getpass
+import time
+
 database = {
     'user' : {
         'aaronshenny':{
@@ -103,10 +105,11 @@ def create_user(name):
 
 
 def sign_in():
-    username = input('Enter your username : ')
+    username = input('Username : ')
     if username in database['user']:
         password1 = getpass.getpass()   
         if password1 == database['user'][username]['password']:
+            time.sleep(1)
             print('Account logined..')
             print('Welcome',database['user'][username]['name'])
         else:
@@ -120,11 +123,11 @@ def sign_in():
 login = False
 
 while True:
-    ch = int(input('Enter the choice : '))
-    if ch == 1:
+    ch = input('LOG-IN/SIGN-UP : ').lower()
+    if ch == 'login' or ch == 'log-in' or ch == '1':
         sign_in()
         break
-    elif ch == 2:
+    elif ch == 'signup' or ch == 'sign-up' or ch == '2':
         name = input('Full Name : ')
         create_user(name)
         #print(database)
