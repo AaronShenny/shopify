@@ -137,7 +137,7 @@ def buy():
             print('Item not Found')
         if items == '0':
             break
-    user_buy[username] : l
+    user_buy[username] = l
     print(user_buy)
 
 
