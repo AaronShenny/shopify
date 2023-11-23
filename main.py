@@ -105,14 +105,16 @@ def create_user(name):
         sign_in()
 
 
-def sign_in():
-    username = input('Username : ')
+def sign_in(username):
+    
     if username in database['user']:
         password1 = getpass.getpass(prompt = 'Password : ')   
         if password1 == database['user'][username]['password']:
             time.sleep(1)
             print('Account logined..')
             print('Welcome',database['user'][username]['name'])
+            username1 = username
+
         else:
             print('Incorrect Password...')
     else:  
@@ -125,11 +127,19 @@ def sign_in():
         create_user(name)
 user_buy =  {}
 def buy():
+    l = []
     while True:
-       items = input('Enter the item :')
-       if items in database['vegetables']:
-           user_buy[username] = [items]
-        
+        items = input('Enter the item :')
+        if items in database['vegetables']:
+           l.append(items)
+
+        else:
+            print('Item not Found')
+        if items == '0':
+            break
+    user_buy[username] : l
+    print(user_buy)
+
 
 login = False
 
@@ -138,7 +148,9 @@ while True:
     ch = input('LOG-IN/SIGN-UP : ').lower()
     if ch == 'login' or ch == 'log-in' or ch == '1':
         time.sleep(1)
-        sign_in()
+        username = input('Username : ')
+        sign_in(username)
+        
         
         break
     elif ch == 'signup' or ch == 'sign-up' or ch == '2':
