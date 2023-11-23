@@ -92,7 +92,7 @@ def create_user(name):
         print('Same user has been found in our databse. Please login ...')
     else:
         try: 
-            password = getpass.getpass()
+            password = getpass.getpass(prompt = 'Create Your Account Password : ')
         except Exception as Error:
             print('Error : ', Error)
         try:
@@ -108,7 +108,7 @@ def create_user(name):
 def sign_in():
     username = input('Username : ')
     if username in database['user']:
-        password1 = getpass.getpass()   
+        password1 = getpass.getpass(prompt = 'Password : ')   
         if password1 == database['user'][username]['password']:
             time.sleep(1)
             print('Account logined..')
@@ -123,8 +123,13 @@ def sign_in():
         time.sleep(1)
         name  = input('Full name : ')
         create_user(name)
+user_buy =  {}
+def buy():
+    while True:
+       items = input('Enter the item :')
+       if items in database['vegetables']:
+           user_buy[username] = [items]
         
-
 
 login = False
 
@@ -134,11 +139,15 @@ while True:
     if ch == 'login' or ch == 'log-in' or ch == '1':
         time.sleep(1)
         sign_in()
+        
         break
     elif ch == 'signup' or ch == 'sign-up' or ch == '2':
         name = input('Full Name : ')
         create_user(name)
         #print(database)
+#print(database)
+
+buy()
 print()
 print('='*55)
 print()
