@@ -76,6 +76,12 @@ database = {
             'price':'34RS',
             'stock':15
         },
+        'brinjal':{
+            'name':'Brinjal',
+            'price':'33RS',
+            'stock':18
+
+        }
         
 
 
