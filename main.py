@@ -76,6 +76,12 @@ database = {
             'price':'34RS',
             'stock':15
         },
+        'brinjal':{
+            'name':'Brinjal',
+            'price':'33RS',
+            'stock':18
+
+        }
         
 
 
@@ -105,8 +111,8 @@ def create_user(name):
         sign_in()
 
 
-def sign_in(username):
-    
+def sign_in():
+    username = input('Username : ')
     if username in database['user']:
         password1 = getpass.getpass(prompt = 'Password : ')   
         if password1 == database['user'][username]['password']:
@@ -125,6 +131,7 @@ def sign_in(username):
         time.sleep(1)
         name  = input('Full name : ')
         create_user(name)
+    return username
 user_buy =  {}
 def buy():
     l = []
@@ -148,10 +155,11 @@ while True:
     ch = input('LOG-IN/SIGN-UP : ').lower()
     if ch == 'login' or ch == 'log-in' or ch == '1':
         time.sleep(1)
-        username = input('Username : ')
-        sign_in(username)
+        
+        username = sign_in()
         
         
+
         break
     elif ch == 'signup' or ch == 'sign-up' or ch == '2':
         name = input('Full Name : ')
@@ -159,10 +167,10 @@ while True:
         #print(database)
 #print(database)
 
-buy()
+#buy()
 print()
 print('='*55)
 print()
-print('\t\tWelcome to Shenny\'shop')
+print('\t\tWelcome to Shenny \'shop\'!')
 print()
 print('='*55)
