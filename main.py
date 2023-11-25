@@ -171,6 +171,6 @@ while True:
 print()
 print('='*55)
 print()
-print('\t\tWelcome to Shenny\'shop')
+print('\t\tWelcome to Shenny \'shop\'!')
 print()
 print('='*55)
