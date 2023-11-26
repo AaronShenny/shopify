@@ -136,7 +136,7 @@ def sign_in():
         create_user(name)
     return username
 
-def buy():
+def buy(l):
     
     while True:
         items = input('Enter the item :')
@@ -180,7 +180,10 @@ def recipt():
     if confirm == 'yes':
         l =  user_buy.get(username)
         buy(l)
-    brougth_items = user_buy.get(username) 
+    brougth_items = user_buy.get(username)
+    print('='*55)
+    print('RECIPT'.center(50))
+    print('='*55)
     for i in  brougth_items:
         print(i)
 
