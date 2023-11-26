@@ -1,6 +1,6 @@
 import getpass
 import time
-
+user_buy =  {}
 database = {
     'user' : {
         'aaronshenny':{
@@ -135,9 +135,9 @@ def sign_in():
         name  = input('Full name : ')
         create_user(name)
     return username
-user_buy =  {}
+
 def buy():
-    l = []
+    
     while True:
         items = input('Enter the item :')
         if items in database['vegetables']:
@@ -176,6 +176,10 @@ def list1(database):
 
 
 def recipt():
+    confirm =  input('Anything else ..? : ').lower()
+    if confirm == 'yes':
+        l =  user_buy.get(username)
+        buy(l)
     brougth_items = user_buy.get(username) 
     for i in  brougth_items:
         print(i)
@@ -204,7 +208,9 @@ list1(database)
 buyacceot =  input('Wanna buy something from our store ...?? [yes/no] : ').lower()
 if buyacceot == 'yes':
     time.sleep(1)
-    buy()
+    l = []
+    buy(l)
+    recipt()
 else:
     time.sleep(1)
     print('Thank you for comming')
