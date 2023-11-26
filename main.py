@@ -173,8 +173,12 @@ def list1(database):
    
     print("---------------------------------")
 
-# Call the function to display the vegetable table
 
+
+def recipt():
+    brougth_items = user_buy.get(username) 
+    for i in  brougth_items:
+        print(i)
 
 login = False
 print()
