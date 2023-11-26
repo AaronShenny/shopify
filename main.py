@@ -118,11 +118,14 @@ def sign_in():
         if password1 == database['user'][username]['password']:
             time.sleep(1)
             print('Account logined..')
+            print()
             print('Welcome',database['user'][username]['name'])
+            print()
             username1 = username
 
         else:
             print('Incorrect Password...')
+            
     else:  
         time.sleep(1)
         print('Account not Found')
@@ -149,7 +152,14 @@ def buy():
 
 
 login = False
-
+print()
+print('='*55)
+print()
+print('\t\tWelcome to Shenny \'shop\'!')
+print()
+print('='*55)
+print()
+time.sleep(1)
 while True:
     print('PLEASE LOGIN...')
     ch = input('LOG-IN/SIGN-UP : ').lower()
@@ -168,9 +178,3 @@ while True:
 #print(database)
 
 #buy()
-print()
-print('='*55)
-print()
-print('\t\tWelcome to Shenny \'shop\'!')
-print()
-print('='*55)
