@@ -142,13 +142,38 @@ def buy():
         items = input('Enter the item :')
         if items in database['vegetables']:
            l.append(items)
-
+        elif items == '0':
+            break
         else:
             print('Item not Found')
-        if items == '0':
-            break
+        
     user_buy[username] = l
     print(user_buy)
+
+def list1(database):
+    vegetable_data = database.get('vegetables')
+
+    if not vegetable_data:
+        print("No vegetable data found!")
+        return
+
+    print("---------------------------------")
+    print("| Vegetable      | Price | Stock   |")
+    print("---------------------------------")
+
+    
+    for veg_name, veg_info in vegetable_data.items():
+        name = veg_info.get('name', 'N/A')   #getfunctio
+        price = veg_info.get('price', 'N/A')
+        stock = veg_info.get('stock', 'N/A')
+
+        
+        print(f"| {name.ljust(15)}| {price.ljust(6)}| {str(stock).ljust(8)}|")
+
+   
+    print("---------------------------------")
+
+# Call the function to display the vegetable table
 
 
 login = False
@@ -160,21 +185,24 @@ print()
 print('='*55)
 print()
 time.sleep(1)
+login = False
 while True:
-    print('PLEASE LOGIN...')
-    ch = input('LOG-IN/SIGN-UP : ').lower()
-    if ch == 'login' or ch == 'log-in' or ch == '1':
-        time.sleep(1)
-        
-        username = sign_in()
-        
-        
-
-        break
-    elif ch == 'signup' or ch == 'sign-up' or ch == '2':
-        name = input('Full Name : ')
-        create_user(name)
+    time.sleep(1)
+    username = sign_in()    
+    break
+    login = True
         #print(database)
 #print(database)
 
 #buy()
+time.sleep(1)
+list1(database)
+buyacceot =  input('Wanna buy something from our store ...?? [yes/no] : ').lower()
+if buyacceot == 'yes':
+    time.sleep(1)
+    buy()
+else:
+    time.sleep(1)
+    print('Thank you for comming')
+    time.sleep(5)
+    
