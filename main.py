@@ -122,9 +122,11 @@ def sign_in():
             print('Welcome',database['user'][username]['name'])
             print()
             username1 = username
+            login = True
 
         else:
             print('Incorrect Password...')
+
             
     else:  
         time.sleep(1)
@@ -201,11 +203,13 @@ while True:
     time.sleep(1)
     username = sign_in()    
     break
-    login = True
+    #login = True
         #print(database)
 #print(database)
 
 #buy()
+if login != True:
+    sign_in()
 time.sleep(1)
 list1(database)
 buyacceot =  input('Wanna buy something from our store ...?? [yes/no] : ').lower()
