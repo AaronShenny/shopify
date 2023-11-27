@@ -163,7 +163,7 @@ def list1(database):
 
     
     for veg_name, veg_info in vegetable_data.items():
-        name = veg_info.get('name', 'N/A')   #getfunctio
+        name = veg_info.get('name', 'N/A')  
         price = veg_info.get('price', 'N/A')
         stock = veg_info.get('stock', 'N/A')
 
@@ -218,4 +218,14 @@ else:
     time.sleep(1)
     print('Thank you for comming')
     time.sleep(5)
-    
+
+import shutil
+import os
+# Get the current working directory
+cwd = os.getcwd()
+
+# Get the path to the existing file
+file_path = os.path.join(cwd, "my_file.py")
+
+# Copy the file to itself
+shutil.copy(file_path, file_path)
