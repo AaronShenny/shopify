@@ -141,8 +141,8 @@ def sign_in():
 def buy(l):
     
     while True:
-        items = input('Enter the item :')
-        if items in database['vegetables']:
+        items = eval(input('Enter the item :'))
+        if items[0] in database['vegetables']:
            l.append(items)
         elif items == '0':
             break
@@ -176,6 +176,7 @@ def list1(database):
     print("---------------------------------")
 
 
+# def stock_reducer():
 
 def recipt():
     confirm =  input('Anything else ..? : ').lower()
@@ -223,13 +224,14 @@ else:
     print('Thank you for comming')
     time.sleep(5)
 
-import shutil
-import os
-# Get the current working directory
-cwd = os.getcwd()
+# import shutil
+# import os
+# # Get the current working directory
+# cwd = os.getcwd()
 
-# Get the path to the existing file
-file_path = os.path.join(cwd, "my_file.py")
+# # Get the path to the existing file
+# file_path = os.path.join(cwd, "my_file.py")
 
-# Copy the file to itself
-shutil.copy(file_path, file_path)
+# # Copy the file to itself
+# shutil.copy(file_path, file_path)
+print(user_buy)
