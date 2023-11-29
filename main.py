@@ -90,13 +90,13 @@ database = {
 
     }
 }
-#login  = False
 def create_user(name):
     print('Sorry, Dur to the limited knowlegde, Now creating account will be deleted after the program closes. Use the default username and password...')
     print('Creating a user account...')
     username = input('Username : ')
     if username in database['user']:
         print('Same user has been found in our databse. Please login ...')
+        sign_in()
     else:
         try: 
             password = getpass.getpass(prompt = 'Create Your Account Password : ')
@@ -111,38 +111,43 @@ def create_user(name):
             print('Error : ', Error)
         sign_in()
 
-
 def sign_in():
-    username = input('Username : ')
-    if username in database['user']:
-        password1 = getpass.getpass(prompt = 'Password : ')   
-        if password1 == database['user'][username]['password']:
+    #login = False
+    while True:
+        username = input('Username : ')
+        if username in database['user']:
+            password1 = getpass.getpass(prompt = 'Password : ')   
+            if password1 == database['user'][username]['password']:
+                time.sleep(1)
+                print('Account logined..')
+                print('Welcome',database['user'][username]['name'])
+                username1 = username
+                login = True
+                return username,login
+            else:
+                login = False
+                print('Incorrect Password...')
+                login_checker(login)
+                return username,login
+        else:  
             time.sleep(1)
-            print('Account logined..')
-            
-            print('Welcome',database['user'][username]['name'])
-            
-            username1 = username
-            login = True
+            print('Account not Found')
+            time.sleep(1)
+            print('Creating an account...')
+            time.sleep(1)
+            name  = input('Full name : ')
+            create_user(name)
+        print(username,login)
+    
 
-        else:
-            print('Incorrect Password...')
 
-            
-    else:  
-        time.sleep(1)
-        print('Account not Found')
-        time.sleep(1)
-        print('Creating an account...')
-        time.sleep(1)
-        name  = input('Full name : ')
-        create_user(name)
-    return username
 
 def buy(l):
     
     while True:
         item = input('Enter an item : ')
+        if item == 'exit' or item == 0:
+            break
         qut = int(input(f'How much kilo you need for {item} : '))
         items = (item,qut)
         #items = tuple(input('Enter the item :'))
@@ -195,6 +200,10 @@ def recipt():
     for i in  brougth_items:
         print(i)
 
+def login_checker(login):
+    print('Test pass4')
+    if login != True:
+        sign_in()
 
 print()
 print('='*55)
@@ -204,39 +213,41 @@ print()
 print('='*55)
 print()
 time.sleep(1)
-
+n=0
 while True:
     time.sleep(1)
-    username = sign_in()    
-    break
-    login = True
+    print('Test pass1')
+    username,login = sign_in() 
+    
+    
+        
+#login = True
         #print(database)
 #print(database)
 
 #buy()
-# if login != True:
-#     sign_in()
-time.sleep(1)
-list1(database)
-buyacceot =  input('Wanna buy something from our store ...?? [yes/no] : ').lower()
-if buyacceot == 'yes':
+    print('Test pass 2')
     time.sleep(1)
-    l = []
-    buy(l)
-    recipt()
-else:
-    time.sleep(1)
-    print('Thank you for comming')
-    time.sleep(5)
+    list1(database)
+    buyacceot =  input('Wanna buy something from our store ...?? [yes/no] : ').lower()
+    if buyacceot == 'yes':
+        time.sleep(1)
+        l = []
+        buy(l)
+        recipt()
+    else:
+        time.sleep(1)
+        print('Thank you for comming')
+        time.sleep(5)
 
-# import shutil
-# import os
-# # Get the current working directory
-# cwd = os.getcwd()
+    # import shutil
+    # import os
+    # # Get the current working directory
+    # cwd = os.getcwd()
 
-# # Get the path to the existing file
-# file_path = os.path.join(cwd, "my_file.py")
+    # # Get the path to the existing file
+    # file_path = os.path.join(cwd, "my_file.py")
 
-# # Copy the file to itself
-# shutil.copy(file_path, file_path)
-print(user_buy)
+    # # Copy the file to itself
+    # shutil.copy(file_path, file_path)
+    print(user_buy)
