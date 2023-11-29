@@ -147,9 +147,9 @@ def buy(l):
     
     while True:
         item = input('Enter an item : ')
-        if item == 'exit' or item == 0:
+        if item == 'exit' or item == '0':
             break
-        qut = int(input(f'How much kilo you need for {item} : '))
+        qut = float(input(f'How much kilo you need for {item} : '))
         items = (item,qut)
         #items = tuple(input('Enter the item :'))
         print(items)
@@ -218,6 +218,7 @@ n=0
 while True:
     time.sleep(1)
     print('Test pass1')
+    
     username,login = sign_in() 
     
     
@@ -252,3 +253,5 @@ while True:
     # # Copy the file to itself
     # shutil.copy(file_path, file_path)
     print(user_buy)
+    print('NEXT CUSTOMER PLEASE...')
+    
