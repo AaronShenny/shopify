@@ -72,7 +72,7 @@ database = {
             'price':'111RS',
             'stock':20
         },
-        'elephantyam':{
+        'elephant yam':{
             'name':'Elephant Yam',
             'price':'34RS',
             'stock':15
@@ -263,8 +263,8 @@ def main():
     # shutil.copy(file_path, file_path)
         print(user_buy)
         break
-        print('NEXT CUSTOMER PLEASE...')
-        time.sleep(2)
+        # print('NEXT CUSTOMER PLEASE...')
+        # time.sleep(2)
 
 #sys.exit(ord('q'))
 if __name__ == "__main__":
