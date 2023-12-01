@@ -1,5 +1,6 @@
 import getpass
 import time
+import sys
 user_buy =  {}
 database = {
     'user' : {
@@ -149,16 +150,21 @@ def buy(l):
         item = input('Enter an item : ')
         if item == 'exit' or item == '0':
             break
-        qut = float(input(f'How much kilo you need for {item} : '))
-        items = (item,qut)
+        try:
+            qut = float(input(f'How much kilo you need for {item} : '))
+            items = (item,qut)
         #items = tuple(input('Enter the item :'))
-        print(items)
-        if items[0] in database['vegetables']:
-           l.append(items)
-        elif items[0] == 'exit':
-            break
-        else:
-            print('Item not Found')
+            print(items)
+            if items[0] in database['vegetables']:
+                l.append(items)
+            elif items[0] == 'exit':
+                break
+            else:
+                print('Item not Found')
+        except ValueError:
+            print('Please enter an valid value...')
+
+       
         
     user_buy[username] = l
     print(user_buy)
@@ -255,4 +261,7 @@ while True:
     # shutil.copy(file_path, file_path)
     print(user_buy)
     print('NEXT CUSTOMER PLEASE...')
-    
+    time.sleep(2)
+
+#sys.exit(ord('q'))
+quit('q')
