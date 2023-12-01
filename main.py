@@ -140,11 +140,11 @@ def sign_in():
             name  = input('Full name : ')
             create_user(name)
         #print(username,login)
-    
 
 
 
-def buy(l):
+
+def buy(l,username):
     
     while True:
         item = input('Enter an item : ')
@@ -195,7 +195,7 @@ def list1(database):
 
 # def stock_reducer():
 
-def recipt():
+def recipt(username):
     print('Test Pass 5')
     confirm =  input('Anything else ..? : ').lower()
     if confirm == 'yes':
@@ -222,11 +222,13 @@ print('='*55)
 print()
 time.sleep(1)
 n=0
-while True:
-    time.sleep(1)
-    print('Test pass1')
-    
-    username,login = sign_in() 
+def main():
+    username = None
+    while True:
+        time.sleep(1)
+        print('Test pass1')
+
+        username,login = sign_in() 
     
     
         
@@ -235,33 +237,46 @@ while True:
 #print(database)
 
 #buy()
-    print('Test pass 2')
-    time.sleep(1)
-    list1(database)
-    buyacceot =  input('Wanna buy something from our store ...?? [yes/no] : ').lower()
-    if buyacceot == 'yes':
+        print('Test pass 2')
         time.sleep(1)
-        l = []
-        buy(l)
-        recipt()
-    else:
-        time.sleep(1)
-        print('Thank you for comming')
-        time.sleep(5)
+        list1(database)
+        buyacceot =  input('Wanna buy something from our store ...?? [yes/no] : ').lower()
+        if buyacceot == 'yes':
+            time.sleep(1)
+            l = []
+            buy(l,username)
+            recipt(username)
+        else:
+            time.sleep(1)
+            print('Thank you for comming')
+            time.sleep(5)
 
-    # import shutil
-    # import os
-    # # Get the current working directory
-    # cwd = os.getcwd()
+        # import shutil
+        # import os
+        # # Get the current working directory
+        # cwd = os.getcwd()
 
-    # # Get the path to the existing file
-    # file_path = os.path.join(cwd, "my_file.py")
+        # # Get the path to the existing file
+    # fi    le_path = os.path.join(cwd, "my_file.py")
 
     # # Copy the file to itself
     # shutil.copy(file_path, file_path)
-    print(user_buy)
-    print('NEXT CUSTOMER PLEASE...')
-    time.sleep(2)
+        print(user_buy)
+        break
+        print('NEXT CUSTOMER PLEASE...')
+        time.sleep(2)
 
 #sys.exit(ord('q'))
-quit('q')
+if __name__ == "__main__":
+    main()
+    while True:
+        time.sleep(2)
+        choice = input("Press 'q' to quit or any other key to continue shopping...: ")
+        if choice.lower() == 'q':
+            print('Thank you for coming\nVisit again!!')
+            print("Exiting the program...")
+            break
+        else:
+            print('NEXT CUSTOMER PLEASE...')
+            time.sleep(2)
+            main()
