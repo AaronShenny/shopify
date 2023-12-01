@@ -190,6 +190,7 @@ def list1(database):
 # def stock_reducer():
 
 def recipt():
+    print('Test Pass 5')
     confirm =  input('Anything else ..? : ').lower()
     if confirm == 'yes':
         l =  user_buy.get(username)
