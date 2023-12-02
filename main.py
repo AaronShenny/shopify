@@ -161,9 +161,9 @@ def buy(l,username):
             else:
                 try:
                     if item in database['vegetables']:
-                        qut = float(input(f'How much kilo you need for {item} : '))
+                        qut = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : '))
                         brougth_items.append(item) 
-                        items = (item,qut)
+                        items = (database['vegetables'][item]['name'],qut)
                         l.append(items)
                     else:
                         print('Item not Found')
