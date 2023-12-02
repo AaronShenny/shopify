@@ -145,24 +145,30 @@ def sign_in():
 
 
 def buy(l,username):
-    
+    brougth_items = []
     while True:
         item = input('Enter an item : ')
         if item == 'exit' or item == '0':
             break
-        try:
-            qut = float(input(f'How much kilo you need for {item} : '))
-            items = (item,qut)
-        #items = tuple(input('Enter the item :'))
-            print(items)
-            if items[0] in database['vegetables']:
-                l.append(items)
-            elif items[0] == 'exit':
-                break
+        elif item in brougth_items:
+            print('Item is already in the cart!!')
+        else:
+            
+            print(l)
+            for i in l:
+                if item in i[0]:
+                    print('Item is already added')
             else:
-                print('Item not Found')
-        except ValueError:
-            print('Please enter an valid value...')
+                try:
+                    if item in database['vegetables']:
+                        qut = float(input(f'How much kilo you need for {item} : '))
+                        brougth_items.append(item) 
+                        items = (item,qut)
+                        l.append(items)
+                    else:
+                        print('Item not Found')
+                except ValueError:
+                    print('Please enter an valid value...')
 
        
         
