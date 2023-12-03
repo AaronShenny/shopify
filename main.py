@@ -97,7 +97,7 @@ def create_user(name):
     username = input('Username : ')
     if username in database['user']:
         print('Same user has been found in our databse. Please login ...')
-        sign_in()
+        
     else:
         try: 
             password = getpass.getpass(prompt = 'Create Your Account Password : ')
