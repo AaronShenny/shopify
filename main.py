@@ -157,6 +157,7 @@ def buy(l,username):
         if item == 'exit' or item == '0':
             break
         elif item in brougth_items:
+            print()
             print('Item is already in the cart!!')
         else:
             
