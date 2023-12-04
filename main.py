@@ -115,6 +115,9 @@ def create_user(name):
 def sign_in():
     #login = False
     while True:
+        print()
+        print()
+        print('LOGIN')
         username = input('Username : ')
         if username in database['user']:
             password1 = getpass.getpass(prompt = 'Password : ')   
