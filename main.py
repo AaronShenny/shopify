@@ -24,7 +24,6 @@ database = {
         'tomato' : {
             'name' : 'Tomato',
             'price' : '48RS',
-            'stock' : 10
         },
         'onion': {
             'name':'Onion',
@@ -83,6 +82,7 @@ database = {
             'stock':18
 
         }
+
         
 
 
@@ -164,6 +164,7 @@ def buy(l,username):
             print(l)
             for i in l:
                 if item in i[0]:
+                    print()
                     print('Item is already added')
             else:
                 try:
@@ -231,8 +232,9 @@ print('='*55)
 print()
 print('\t\tWelcome to Shenny \'shop\'!')
 print()
-print('='*55)
 print()
+print('='*55)
+
 time.sleep(1)
 n=0
 def main():
