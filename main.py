@@ -24,6 +24,7 @@ database = {
         'tomato' : {
             'name' : 'Tomato',
             'price' : '48RS',
+                'stock' : 10
         },
         'onion': {
             'name':'Onion',
@@ -230,8 +231,7 @@ def login_checker(login):
 print()
 print('='*55)
 print()
-print('\t\tWelcome to Shenny \'shop\'!')
-print()
+print('\t\t\tSHOPIFY')
 print()
 print('='*55)
 
