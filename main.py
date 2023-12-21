@@ -221,8 +221,9 @@ def recipt(username):
     print('RECIPT'.center(50))
     print('='*55)
     for i in  brougth_items:
-        print(i)
-
+        for j in i:
+            print(j,end=' ')
+        print()
 def login_checker(login):
     print('Test pass4')
     if login != True:
