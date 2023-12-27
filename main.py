@@ -155,7 +155,7 @@ def sign_in():
 def buy(l,username):
     brougth_items = []
     while True:
-        item = input('Enter an item : ')
+        item = input('Enter an item : ').lower()
         if item == 'exit' or item == '0':
             break
         elif item in brougth_items:
