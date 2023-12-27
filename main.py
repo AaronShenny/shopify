@@ -121,7 +121,8 @@ def sign_in():
     while True:
         print()
         print()
-        print('LOGIN')
+        print('\t\t\tLOGIN')
+        print()
         username = input('Username : ')
         if username in database['user']:
             password1 = getpass.getpass(prompt = 'Password : ')   
