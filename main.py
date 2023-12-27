@@ -172,6 +172,13 @@ def buy(l,username):
                 try:
                     if item in database['vegetables']:
                         qut = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : '))
+                        if qut < 0:
+                            print('stock unavailable')
+                            break
+                        if qut > database['vegetables'][item]['stock']:
+                            print('stock unavailable')
+                            break
+
                         brougth_items.append(item) 
                         items = (database['vegetables'][item]['name'],qut)
                         l.append(items)
