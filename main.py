@@ -175,10 +175,14 @@ def buy(l,username):
                         brougth_items.append(item) 
                         items = (database['vegetables'][item]['name'],qut)
                         l.append(items)
+                        database['vegetables'][item]['stock'] = database['vegetables'][item]['stock'] - qut
+                        print(f"Remaing Stocks = {database['vegetables'][item]['stock']}")
+                        stock_reducer(item,qut)
                     else:
                         print('Item not Found')
                 except ValueError:
                     print('Please enter an valid value...')
+            
 
        
         
@@ -229,6 +233,9 @@ def login_checker(login):
     print('Test pass4')
     if login != True:
         sign_in()
+
+def stock_reducer(item,qut):
+    print(item,qut)
 
 print()
 print('='*55)
