@@ -173,10 +173,12 @@ def buy(l,username):
                     if item in database['vegetables']:
                         qut = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : '))
                         if qut < 0:
-                            print('stock unavailable')
+                            print('The digit should be more than 0')
+                            buy(l,username)
                             break
                         if qut > database['vegetables'][item]['stock']:
-                            print('stock unavailable')
+                            print(f'The digit should be less than {database["vegetables"][item]["name"]}')
+                            buy(l,username)
                             break
 
                         brougth_items.append(item) 
