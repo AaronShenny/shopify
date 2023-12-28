@@ -237,9 +237,9 @@ def recipt(username):
     print('='*55)
     print('RECIPT'.center(50))
     print('='*55)
-    time= time.asctime()
-    #user= database['user']
-    print('Name : ',username,'\t\t','Date : ',time)
+    
+    time2 = time.asctime
+    print('Name : ',username,'\t\t','Date : ', '\t\t\t' ,time)
     for i in  brougth_items:
         for j in i:
             print(j,end=' ')
