@@ -160,22 +160,20 @@ def buy(l,username): #Function that helps user to buy products
             if change == 'yes':
                 for i in l:
                     if item.title() == i[0]:
-                        product,quantity = i   
-                        quantity = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : ')) 
-                        t = product,quantity
-                        l.remove(i)
-                        l.append(t)
+                        product,quantity = i   #Unpacking the tuple to change
+                        quantity = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : ')) #Asking the change
+                        t = product,quantity   #Packing the tuple
+                        l.remove(i)            #Removing the existing tuple
+                        l.append(t)            #Adding the new tuple into list
         else:
-            
-            print(l)
             for i in l:
                 if item in i[0]:
                     print()
                     print('Item is already added')
             else:
                 try:
-                    if item in database['vegetables']:
-                        qut = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : '))
+                    if item.lower() in database['vegetables']: #Checking the item in database
+                        qut = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : ')) #Asking the quantity
                         if qut < 0:
                             print('The digit should be more than 0')
                             buy(l,username)
@@ -284,23 +282,10 @@ def main():
             time.sleep(1)
             print('Thank you for comming')
             time.sleep(5)
-
-        # import shutil
-        # import os
-        # # Get the current working directory
-        # cwd = os.getcwd()
-
-        # # Get the path to the existing file
-    # fi    le_path = os.path.join(cwd, "my_file.py")
-
-    # # Copy the file to itself
-    # shutil.copy(file_path, file_path)
-        print(user_buy)
         break
-        # print('NEXT CUSTOMER PLEASE...')
-        # time.sleep(2)
+      
 
-#sys.exit(ord('q'))
+
 if __name__ == "__main__":
     main()
     while True:
@@ -314,4 +299,3 @@ if __name__ == "__main__":
             print('NEXT CUSTOMER PLEASE...')
             time.sleep(2)
             main()
-            
