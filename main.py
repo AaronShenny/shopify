@@ -84,10 +84,6 @@ database = {     #The Whole Database .
             'stock':18
 
         }
-
-        
-
-
     },
     'fruits':{
 
@@ -141,21 +137,35 @@ def sign_in():                                           #Function that helps to
         else:  
             time.sleep(1)
             print('Account not Found')
-            time.sleep(1)   #If the account didnt found create_user() is called
+            time.sleep(1)   #If the account didnt found on the database then create_user() is called
             print('Creating an account...')
             time.sleep(1)
             name  = input('Full name : ')
             create_user(name)
        
-def buy(l,username):
+def buy(l,username): #Function that helps user to buy products
     brougth_items = []
+    print('Type  "0" or "exit" after finishing adding the products')
     while True:
-        item = input('Enter an item : ').lower()
-        if item == 'exit' or item == '0':
+        item = input('Enter an item : ').lower() #User enters the product they need
+        if item == 'exit' or item == '0': #To exit the while loop
             break
         elif item in brougth_items:
-            print()
+            print()                      #Checking the cart if the user had already brougtj
             print('Item is already in the cart!!')
+            for i in l:
+                if item.title() == i[0]: 
+                    print(f'Product{i[0]}')
+                    print(f'Quantity : {i[1]}') 
+            change = input('Do you want to change the quantity  ? : [yes/no] ')  #Asking user if they need to change the quantity
+            if change == 'yes':
+                for i in l:
+                    if item.title() == i[0]:
+                        product,quantity = i   
+                        quantity = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : ')) 
+                        t = product,quantity
+                        l.remove(i)
+                        l.append(t)
         else:
             
             print(l)
@@ -191,11 +201,7 @@ def buy(l,username):
                         print('Item not Found')
                 except ValueError:
                     print('Please enter an valid value...')
-
-            
-
-       
-        
+   
     user_buy[username] = l
     print(user_buy)
     return user_buy
@@ -207,9 +213,9 @@ def list1(database):
         print("No vegetable data found!")
         return
 
-    print("---------------------------------")
+    print("------------------------------------")
     print("| Vegetable      | Price | Stock   |")
-    print("---------------------------------")
+    print("------------------------------------")
 
     
     for veg_name, veg_info in vegetable_data.items():
@@ -244,9 +250,6 @@ def login_checker(login):
     print('Test pass4')
     if login != True:
         sign_in()
-
-def stock_reducer(item,qut):
-    print(item,qut)
 
 print()
 print('='*55)
@@ -315,3 +318,4 @@ if __name__ == "__main__":
             print('NEXT CUSTOMER PLEASE...')
             time.sleep(2)
             main()
+            
