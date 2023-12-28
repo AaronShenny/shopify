@@ -96,7 +96,7 @@ def create_user(name):                   #This Function used to create user into
     print()
     print()
     print('SIGN-UP')
-    print('Sorry, Dur to the limited knowlegde, Now creating account will be deleted after the program closes. Use the default username and password...')
+    print('Sorry, Due to the limited knowlegde, Now creating account will be deleted after the program closes. Use the default username and password...')
     print('Creating a user account...')
     username = input('Username : ')
     if username in database['user']:  #This will check if the user had already created account
