@@ -239,7 +239,7 @@ def recipt(username):
     print('='*55)
     time2 = time.asctime()
 
-    print('Name : ',username,'\t\t\t','Date : ',time2)
+    print('Name : ',username,'\t\t','Date : ',time2)
     for i in  brougth_items:
         for j in i:
             print(j,end=' ')
