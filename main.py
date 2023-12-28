@@ -137,6 +137,7 @@ def sign_in():
             if password1 == database['user'][username]['password']:    #Checking if the given password is correct with database
                 time.sleep(1)
                 print('Account logined..')
+                print()
                 print('Welcome',database['user'][username]['name'])
                 username1 = username
                 login = True                                           #Intializing the varible as True
@@ -160,6 +161,7 @@ def sign_in():
 def buy(l,username):                
     brougth_items = []
     while True:
+        print()
         item = input('Enter an item : ').lower()                        #User enters the product they need
         if item == 'exit' or item == '0':                               #Exiting the loop
             break
@@ -168,9 +170,11 @@ def buy(l,username):
             print('Item is already in the cart!!')
             for i in l:
                 if item.title() == i[0]: 
-                    print(f'Product{i[0]}')
+                    print(f'Product : {i[0]}')
                     print(f'Quantity : {i[1]}') 
-            change = input('Do you want to change the quantity  ? : [yes/no] ')  #Asking user if they need to change the quantity
+            print()
+            change = input('Do you want to change the quantity  ? : [yes/no] ')
+            print()                    #Asking the user if they want to change the quantity
             if change == 'yes':
                 for i in l:
                     if item.title() == i[0]:
@@ -222,9 +226,9 @@ def list1(database):
     vegetable_data = database.get('vegetables')
 
     if not vegetable_data:
-        print("No vegetable data found!")
+        print("No vegetable data found!")                                                    #Checking if the database is empty or not
         return
-
+    print()
     print("------------------------------------")
     print("| Vegetable      | Price | Stock   |")
     print("------------------------------------")
@@ -240,12 +244,12 @@ def list1(database):
     print("--------------------------------")
 
 def recipt(username):                                                   #Function for printing the recipt
-    print('Test Pass 5')
     confirm =  input('Anything else ..? : ').lower()                    #Asking the user if they want to buy anything else
     if confirm == 'yes':
         l =  user_buy.get(username)
         buy(l)
     brougth_items = user_buy.get(username)
+    print()
     print('='*55)
     print('RECIPT'.center(50))
     print('='*55)
@@ -257,7 +261,6 @@ def recipt(username):                                                   #Functio
             print(j,end=' ')
         print()
 def login_checker(login):
-    print('Test pass4')
     if login != True:
         sign_in()
 
@@ -278,18 +281,16 @@ def main():
     username = None
     while True:
         time.sleep(1)
-        print('Test pass1')
-
         username,login = sign_in() 
-
-        print('Test pass 2')
         time.sleep(1)
         list1(database)
-        buyacceot =  input('Wanna buy something from our store ...?? [yes/no] : ').lower()
+        print()
+        buyacceot =  input('Wanna buy something from our store ...?? [yes/no] : ').lower()   #Asking the user if they want to buy anything..reconfirming
         if buyacceot == 'yes':
             time.sleep(1)
             l = []
-            print('Type  "0" or "exit" after finishing adding the products')
+            print()
+            print('NOTE : Type  "0" or "exit" after finishing adding the products')
             buy(l,username)
             if user_buy[username] == []:
                 pass
