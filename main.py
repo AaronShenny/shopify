@@ -1,5 +1,6 @@
 import getpass   #Prompt the user for a password without echoing
 import time      #This module provides various time-related functions
+
 user_buy =  {}   #Intializong a variable
 
 database = {     #The Whole Database . 
@@ -236,6 +237,9 @@ def recipt(username):
     print('='*55)
     print('RECIPT'.center(50))
     print('='*55)
+    time= time.asctime()
+    #user= database['user']
+    print('Name : ',username,'\t\t','Date : ',time)
     for i in  brougth_items:
         for j in i:
             print(j,end=' ')
