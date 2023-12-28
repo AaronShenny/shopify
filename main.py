@@ -1,6 +1,6 @@
 ''' 
-    This programe is developed by group of 5 students.
-    This program is a vegetable & fruits store management system. 
+    This program is developed by a group of the 5 students.
+    This program is a vegetable & fruit store management system. 
     It allows users to create an account, sign in, buy 
     vegetables, and view their receipts
 '''
