@@ -1,18 +1,18 @@
-import getpass
-import time
-import sys
-user_buy =  {}
-database = {
+import getpass   #Prompt the user for a password without echoing
+import time      #This module provides various time-related functions
+user_buy =  {}   #Intializong a variable
+
+database = {     #The Whole Database . 
     'user' : {
         'aaronshenny':{
             'name' : 'Aaron Shenny',
             'password' : '123'
-        },
-        'user':{
+        },                                            
+        'user':{                                      #userdata
 
             'name' : 'Guest',
             'password' :'root'
-        },
+        },                  
         'aswinaravind27':{
             'name' : 'Aswin Aravind',
             'password':'aswi'
@@ -39,7 +39,7 @@ database = {
         'beetroot':{
             'name':'Beetroot',
             'price':'34RS',
-            'stock':14
+            'stock':14                               #vegetable database
         },
         'potato':{
             'name':'Potato',
@@ -92,31 +92,29 @@ database = {
 
     }
 }
-def create_user(name):
+def create_user(name):                   #This Function used to create user into the database
     print()
     print()
     print('SIGN-UP')
     print('Sorry, Dur to the limited knowlegde, Now creating account will be deleted after the program closes. Use the default username and password...')
     print('Creating a user account...')
     username = input('Username : ')
-    if username in database['user']:
+    if username in database['user']:  #This will check if the user had already created account
         print('Same user has been found in our databse. Please login ...')
         
     else:
         try: 
-            password = getpass.getpass(prompt = 'Create Your Account Password : ')
+            password = getpass.getpass(prompt = 'Create Your Account Password : ')   
         except Exception as Error:
             print('Error : ', Error)
         try:
             database['user'][username] = {
-                'name': name,
+                'name': name,                            #Adds Name and password into the database
                 'password': password
             }
         except Exception as Error:
-            print('Error : ', Error)
-        
-
-def sign_in():
+            print('Error : ', Error)                   
+def sign_in():                                           #Function that helps to sign in to their account
     #login = False
     while True:
         print()
@@ -124,34 +122,30 @@ def sign_in():
         print('\t\t\tLOGIN')
         print()
         username = input('Username : ')
-        if username in database['user']:
+        if username in database['user']:                 #Checking given Username is matching with usernames in databse
             password1 = getpass.getpass(prompt = 'Password : ')   
-            if password1 == database['user'][username]['password']:
+            if password1 == database['user'][username]['password']:    #Checking if the given password is correct with database
                 time.sleep(1)
                 print('Account logined..')
                 print('Welcome',database['user'][username]['name'])
                 username1 = username
-                login = True
-                return username,login
+                login = True  #Intializing the varible as True
+                return username,login #Returning username and login variable 
                 break
             else:
-                login = False
+                login = False #Intializing the varible as True
                 print('Incorrect Password...')
-                login_checker(login)
-                return username,login
+                login_checker(login)   
+                return username,login  #Returning username and login variable 
         else:  
             time.sleep(1)
             print('Account not Found')
-            time.sleep(1)
+            time.sleep(1)   #If the account didnt found create_user() is called
             print('Creating an account...')
             time.sleep(1)
             name  = input('Full name : ')
             create_user(name)
-        #print(username,login)
-
-
-
-
+       
 def buy(l,username):
     brougth_items = []
     while True:
@@ -177,26 +171,33 @@ def buy(l,username):
                             buy(l,username)
                             break
                         if qut > database['vegetables'][item]['stock']:
-                            print(f'The digit should be less than {database["vegetables"][item]["name"]}')
+                            print(f'The digit should be less than the TOTAL STOCK, Remaining Stock : {database["vegetables"][item]["stock"]}')
                             buy(l,username)
                             break
 
                         brougth_items.append(item) 
                         items = (database['vegetables'][item]['name'],qut)
                         l.append(items)
+
                         database['vegetables'][item]['stock'] = database['vegetables'][item]['stock'] - qut
+
                         print(f"Remaing Stocks = {database['vegetables'][item]['stock']}")
-                        stock_reducer(item,qut)
+
+                        if database['vegetables'][item]['stock'] == 0:
+                            del database['vegetables'][item]
+                        #stock_reducer(item,qut)
                     else:
                         print('Item not Found')
                 except ValueError:
                     print('Please enter an valid value...')
+
             
 
        
         
     user_buy[username] = l
     print(user_buy)
+    return user_buy
 
 def list1(database):
     vegetable_data = database.get('vegetables')
@@ -219,10 +220,7 @@ def list1(database):
         print(f"| {name.ljust(15)}| {price.ljust(6)}| {str(stock).ljust(8)}|")
 
    
-    print("---------------------------------")
-
-
-# def stock_reducer():
+    print("--------------------------------")
 
 def recipt(username):
     print('Test Pass 5')
@@ -249,7 +247,11 @@ def stock_reducer(item,qut):
 print()
 print('='*55)
 print()
-print('\t\t\tSHOPIFY')
+print('  / ____| |  | |/ __ \|  __ \_   _|  ____\ \   / /')     
+print(' | (___ | |__| | |  | | |__) || | | |__   \ \_/ / ')    
+print('  \___ \|  __  | |  | |  ___/ | | |  __|   \   /  ')     
+print('  ____) | |  | | |__| | |    _| |_| |       | |   ')
+print(' |_____/|_|  |_|\____/|_|   |_____|_|       |_|   ')
 print()
 print('='*55)
 
@@ -262,14 +264,7 @@ def main():
         print('Test pass1')
 
         username,login = sign_in() 
-    
-    
-        
-#login = True
-        #print(database)
-#print(database)
 
-#buy()
         print('Test pass 2')
         time.sleep(1)
         list1(database)
@@ -278,7 +273,10 @@ def main():
             time.sleep(1)
             l = []
             buy(l,username)
-            recipt(username)
+            if user_buy[username] == []:
+                pass
+            else:
+                recipt(username)
         else:
             time.sleep(1)
             print('Thank you for comming')
