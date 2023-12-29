@@ -48,3 +48,16 @@ Description: Prints a receipt containing the purchased items and relevant detail
 1. **Purpose**: Controls the main program loop.
 2. **Parameters**: None.
 3. **Description**: Manages the user interaction flow by handling sign-in, purchasing, and exiting the program.
+
+## How to Run:
+1. Download the Python from [here](https://www.python.org/downloads/).
+2. Install Python.
+3. Clone Git resposiratory
+\
+ ```gh repo clone AaronShenny/Csproject```
+4. Change the directory to Csproject
+\
+```cd Csproject```
+5. Run the program
+\
+```python3 main.py```
