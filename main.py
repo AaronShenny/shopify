@@ -95,7 +95,68 @@ database = {     #The Whole Database .
         }
     },
     'fruits':{
+        'tomato' : {
+            'name' : 'Tomato',
+            'price' : '48RS',
+                'stock' : 10            #Vegetable Database
+        },
+        'onion': {
+            'name':'Onion',
+            'price':'79RS',
+            'stock':15
+        },
+        'greenchilli':{
+            'name':'Green chilli',
+            'price':'46RS',
+            'stock':12
+        },
+        'beetroot':{
+            'name':'Beetroot',
+            'price':'34RS',
+            'stock':14                               
+        },
+        'potato':{
+            'name':'Potato',
+            'price':'40RS',
+            'stock':16
+        },
+        'cabbage':{
+            'name':'Cabbage',
+            'price':'25RS',
+            'stock': 13
+        },
+        'carrot':{
+            'name':'Carrot',
+            'price':'39RS',
+            'stock':17
+        
+        },
+        'corn':{
+            'name':'Corn',
+            'price':'35RS',
+            'stock':19
+        },
+        'coconut':{
+            'name':'Coconut',
+            'price':'37RS',
+            'stock':16
+        },
+        'ginger':{
+            'name':'Ginger',
+            'price':'111RS',
+            'stock':20
+        },
+        'elephant yam':{
+            'name':'Elephant Yam',
+            'price':'34RS',
+            'stock':15
+        },
+        'brinjal':{
+            'name':'Brinjal',
+            'price':'33RS',
+            'stock':18
 
+        }
     }
 }
 
@@ -225,33 +286,28 @@ def buy(l,username):
 def list1(database):                                                                   
     vegetable_data = database.get('vegetables')
     fruits_data = database.get('fruits')
+    print(vegetable_data)
     if not vegetable_data:
         print("No vegetable data found!")                                                    #Checking if the database is empty or not
         return
     print()
-    print("------------------------------------\t\t\t ---------------------------------")
-    print("| Vegetable      | Price | Stock   |\t\t\t | Fruits      | Price | Stock   |")
-    print("------------------------------------\t\t\t ---------------------------------")
+    print("------------------------------------------\t\t -----------------------------------------")
+    print("|   Vegetable   |     Price     | Stock  |\t\t|    Fruits     |     Price     | Stock  |")
+    print("------------------------------------------\t\t -----------------------------------------")
 
-    
-    for veg_name, veg_info in vegetable_data.items():
-        vname = veg_info.get('name', 'N/A')  
-        vprice = veg_info.get('price', 'N/A')                
-        vstock = veg_info.get('stock', 'N/A')
-        for fru_name,fru_info in fruits_data:
-            fname = fru_infro.get('name', 'N/A')  
-            fprice = fru_infro.get('price', 'N/A')                
-            fstock = fru_infro.get('stock', 'N/A')
-            print(f"| {vname.ljust(15)}| {vprice.ljust(6)}| {str(vstock).ljust(8)}|")
+    veg_keys = list(database['vegetables'].keys())
+    fru_keys = list(database['fruits'].keys())
+    for i, j in zip(veg_keys,fru_keys):
+        veg_name = database['vegetables'][j]['name'].ljust(15)
+        veg_price = database['vegetables'][j]['price'].ljust(15)
+        veg_stock = str(database['vegetables'][j]['stock']).ljust(8)
 
-    # for fru_name,fru_info in fruits_data:
-    #     fname = fru_infro.get('name', 'N/A')  
-    #     fprice = fru_infro.get('price', 'N/A')                
-    #     fstock = fru_infro.get('stock', 'N/A')
+        fruit_name = database['fruits'][j]['name'].ljust(15)
+        fruit_price = database['fruits'][j]['price'].ljust(15)
+        fruit_stock = str(database['fruits'][j]['stock']).ljust(8)
 
-       
-
-    print("--------------------------------")
+        print(f'|{veg_name}|{veg_price}|{veg_stock}|\t\t|{fruit_name}|{fruit_price}|{fruit_stock}|')
+    print("------------------------------------------\t\t -----------------------------------------")
 
 def recipt(username):                                                   #Function for printing the recipt
     confirm =  input('Anything else ..? : ').lower()                    #Asking the user if they want to buy anything else
