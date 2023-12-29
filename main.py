@@ -205,7 +205,7 @@ def buy(l,username):
                         items = (database['vegetables'][item]['name'],qut)
                         l.append(items)
 
-                        database['vegetables'][item]['stock'] = database['vegetables'][item]['stock'] - qut
+                        database['vegetables'][item]['stock'] = database['vegetables'][item]['stock'] - qut     
 
                         print(f"Remaing Stocks = {database['vegetables'][item]['stock']}")
 
@@ -224,22 +224,32 @@ def buy(l,username):
 #Function for listing the items
 def list1(database):                                                                   
     vegetable_data = database.get('vegetables')
-
+    fruits_data = database.get('fruits')
     if not vegetable_data:
         print("No vegetable data found!")                                                    #Checking if the database is empty or not
         return
     print()
-    print("------------------------------------")
-    print("| Vegetable      | Price | Stock   |")
-    print("------------------------------------")
+    print("------------------------------------\t\t\t ---------------------------------")
+    print("| Vegetable      | Price | Stock   |\t\t\t | Fruits      | Price | Stock   |")
+    print("------------------------------------\t\t\t ---------------------------------")
 
     
     for veg_name, veg_info in vegetable_data.items():
-        name = veg_info.get('name', 'N/A')  
-        price = veg_info.get('price', 'N/A')                
-        stock = veg_info.get('stock', 'N/A')
+        vname = veg_info.get('name', 'N/A')  
+        vprice = veg_info.get('price', 'N/A')                
+        vstock = veg_info.get('stock', 'N/A')
+        for fru_name,fru_info in fruits_data:
+            fname = fru_infro.get('name', 'N/A')  
+            fprice = fru_infro.get('price', 'N/A')                
+            fstock = fru_infro.get('stock', 'N/A')
+            print(f"| {vname.ljust(15)}| {vprice.ljust(6)}| {str(vstock).ljust(8)}|")
 
-        print(f"| {name.ljust(15)}| {price.ljust(6)}| {str(stock).ljust(8)}|")
+    # for fru_name,fru_info in fruits_data:
+    #     fname = fru_infro.get('name', 'N/A')  
+    #     fprice = fru_infro.get('price', 'N/A')                
+    #     fstock = fru_infro.get('stock', 'N/A')
+
+       
 
     print("--------------------------------")
 
