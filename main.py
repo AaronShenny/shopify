@@ -95,15 +95,15 @@ database = {     #The Whole Database .
         }
     },
     'fruits':{
-        'apple':{
+        'apple1':{
             'name':'Apple',
             'price':'190Rs',
             'stock':21
         },
         'banana':{
             'name':'Banana',
-            'price':'55Rs'
-            'stock':24
+            'price':'55Rs',
+            'stock': 24
         },
         'orange':{
             'name':'Orange',
@@ -155,9 +155,9 @@ database = {     #The Whole Database .
             'price':'299Rs',
             'stock':31
         
+        }
     }
 }
-
 # Function to create a new user account
 def create_user(name):                   
     print()
@@ -284,7 +284,7 @@ def buy(l,username):
 def list1(database):                                                                   
     vegetable_data = database.get('vegetables')
     fruits_data = database.get('fruits')
-    print(vegetable_data)
+
     if not vegetable_data:
         print("No vegetable data found!")                                                    #Checking if the database is empty or not
         return
@@ -294,11 +294,13 @@ def list1(database):
     print("------------------------------------------\t\t -----------------------------------------")
 
     veg_keys = list(database['vegetables'].keys())
+ 
     fru_keys = list(database['fruits'].keys())
+    
     for i, j in zip(veg_keys,fru_keys):
-        veg_name = database['vegetables'][j]['name'].ljust(15)
-        veg_price = database['vegetables'][j]['price'].ljust(15)
-        veg_stock = str(database['vegetables'][j]['stock']).ljust(8)
+        veg_name = database['vegetables'][i]['name'].ljust(15)
+        veg_price = database['vegetables'][i]['price'].ljust(15)
+        veg_stock = str(database['vegetables'][i]['stock']).ljust(8)
 
         fruit_name = database['fruits'][j]['name'].ljust(15)
         fruit_price = database['fruits'][j]['price'].ljust(15)
