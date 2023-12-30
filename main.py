@@ -95,68 +95,7 @@ database = {     #The Whole Database .
         }
     },
     'fruits':{
-        'tomato' : {
-            'name' : 'Tomato',
-            'price' : '48RS',
-                'stock' : 10            #Vegetable Database
-        },
-        'onion': {
-            'name':'Onion',
-            'price':'79RS',
-            'stock':15
-        },
-        'greenchilli':{
-            'name':'Green chilli',
-            'price':'46RS',
-            'stock':12
-        },
-        'beetroot':{
-            'name':'Beetroot',
-            'price':'34RS',
-            'stock':14                               
-        },
-        'potato':{
-            'name':'Potato',
-            'price':'40RS',
-            'stock':16
-        },
-        'cabbage':{
-            'name':'Cabbage',
-            'price':'25RS',
-            'stock': 13
-        },
-        'carrot':{
-            'name':'Carrot',
-            'price':'39RS',
-            'stock':17
         
-        },
-        'corn':{
-            'name':'Corn',
-            'price':'35RS',
-            'stock':19
-        },
-        'coconut':{
-            'name':'Coconut',
-            'price':'37RS',
-            'stock':16
-        },
-        'ginger':{
-            'name':'Ginger',
-            'price':'111RS',
-            'stock':20
-        },
-        'elephant yam':{
-            'name':'Elephant Yam',
-            'price':'34RS',
-            'stock':15
-        },
-        'brinjal':{
-            'name':'Brinjal',
-            'price':'33RS',
-            'stock':18
-
-        }
     }
 }
 
