@@ -95,6 +95,65 @@ database = {     #The Whole Database .
         }
     },
     'fruits':{
+        'apple':{
+            'name':'Apple',
+            'price':'190Rs',
+            'stock':21
+        },
+        'banana':{
+            'name':'Banana',
+            'price':'55Rs'
+            'stock':24
+        },
+        'orange':{
+            'name':'Orange',
+            'price':'65Rs',
+            'stock':27
+        },
+        'mango':{
+            'name':'Mango',
+            'price':'89Rs',
+            'stock':13
+        },
+        'watermelon':{
+            'name':'Watermelon',
+            'price':'28Rs',
+            'stock':28
+        },
+        'grapes':{
+            'name':'Grapes',
+            'price':'150Rs',
+            'stock':12
+        },
+        'papaya':{
+            'name':'Papaya',
+            'price':'35Rs',
+            'stock':19
+        },
+        'guava':{
+            'name':'Guava',
+            'price':'89Rs',
+            'stock':11
+        },
+        'pineapple':{
+            'name':'Pineapple',
+            'price':'35Rs',
+            'stock':27
+        },
+        'pomegranate':{
+            'name':'Pomegranate',
+            'price':'189Rs',
+            'stock':30
+        },
+        'avocado':{
+            'name':'Avocado',
+            'price':'260Rs',
+            'stock':32
+        },
+        'dragonfruiit':{
+            'name':'Dragonfruit',
+            'price':'299Rs',
+            'stock':31
         
     }
 }
