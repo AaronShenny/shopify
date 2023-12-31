@@ -339,17 +339,35 @@ def recipt(username):                                                   #Functio
         l =  user_buy.get(username)
         buy(l)
     brougth_items = user_buy.get(username)
+    total_amount = 0  # Initialize the total amount variable
+
     print()
     print('='*55)
-    print('RECIPT'.center(50))
+    print('RECEIPT'.center(50))
     print('='*55)
     time2 = time.asctime()                                              #Getting the current time
 
     print('Name : ',username,'\t\t','Date : ',time2)
+    print()
+    print('Item \t\t Rate \t\t\t Quantity \t Amount ')
     for i in  brougth_items:
-        for j in i:
-            print(j,end=' ')
-        print()
+        product_name, quantity = i
+        price_per_kilo = 0
+
+        # Check if the product is a vegetable or a fruit
+        if product_name.lower() in database['vegetables']:
+            price_per_kilo = float(database['vegetables'][product_name.lower()]['price'][:-2])  # Extract price per kilo
+        elif product_name.lower() in database['fruits']:
+            price_per_kilo = float(database['fruits'][product_name.lower()]['price'][:-2])  # Extract price per kilo
+
+        total_price = price_per_kilo * quantity
+        total_amount += total_price
+
+        print(product_name,'\t\t',price_per_kilo,'RS/kg\t\t',quantity, 'kg\t\t',total_price,'RS')
+    print()
+    print('=' * 55)
+    print('Total Amount :',total_amount,' RS')
+
 def login_checker(login):
     if login != True:
         sign_in()
