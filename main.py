@@ -95,7 +95,7 @@ database = {     #The Whole Database .
         }
     },
     'fruits':{
-        'apple1':{
+        'apple':{
             'name':'Apple',
             'price':'190Rs',
             'stock':21
@@ -294,6 +294,9 @@ def buy(l,username):
 
                             if database['fruits'][item]['stock'] == 0:                   
                                 del database['fruits'][item]
+                        else:
+                            print('item not found')
+                       
                 except ValueError:                                                    #Exception handling
                     print('Please enter an valid value...')
    
