@@ -160,14 +160,12 @@ database = {     #The Whole Database .
 }
 # Function to create a new user account
 def create_user(name):                   
-    print()
-    print()
     print('SIGN-UP')
-    print('Sorry, Due to the limited knowlegde, Now creating account will be deleted after the program closes. Use the default username and password...')
+    print('NOTE : Sorry, Due to the limited knowlegde, Now creating account will be deleted after the program closes. Use the default username and password...')
     print('Creating a user account...')
     username = input('Username : ')
     if username in database['user']:  #This will check if the user had already created account
-        print('Same user has been found in our databse. Please login ...')
+        print('Same user has been found in our database. Please login ...')
         
     else:
         try: 
@@ -213,6 +211,8 @@ def sign_in():
             time.sleep(1)                                              #If the account didnt found on the database then create_user() is called
             print('Creating an account...')
             time.sleep(1)
+            print()
+            print()
             name  = input('Full name : ')
             create_user(name)
 
@@ -249,30 +249,51 @@ def buy(l,username):
                     print('Item is already added')
             else:
                 try:
-                    if item.lower() in database['vegetables']:          #Checking the product is in database
-                        qut = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : ')) #Asking the quantity
-                        if qut < 0:
-                            print('The quantity should be more than 0')                    #Checking the quantity is more than 0
-                            buy(l,username)
-                            break
-                        if qut > database['vegetables'][item]['stock']:                    #Checking the given quantity is less than the stock
-                            print(f'The quantity should be less than the TOTAL STOCK, Remaining Stock : {database["vegetables"][item]["stock"]}')
-                            buy(l,username)
-                            break
+                    if item.lower() in database['vegetables'] or database['fruits']:          #Checking the product is in database
+                        if item.lower() in database['vegetables'] :
+                            qut = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : ')) #Asking the quantity
+                            if qut < 0:
+                                print('The quantity should be more than 0')                    #Checking the quantity is more than 0
+                                buy(l,username)
+                                break
+                            if qut > database['vegetables'][item]['stock']:                    #Checking the given quantity is less than the stock
+                                print(f'The quantity should be less than the TOTAL STOCK, Remaining Stock : {database["vegetables"][item]["stock"]}')
+                                buy(l,username)
+                                break
 
-                        brougth_items.append(item)                                          #Adding the item into the cart
-                        items = (database['vegetables'][item]['name'],qut)
-                        l.append(items)
+                            brougth_items.append(item)                                          #Adding the item into the cart
+                            items = (database['vegetables'][item]['name'],qut)
+                            l.append(items)
 
-                        database['vegetables'][item]['stock'] = database['vegetables'][item]['stock'] - qut     
+                            database['vegetables'][item]['stock'] = database['vegetables'][item]['stock'] - qut     
 
-                        print(f"Remaing Stocks = {database['vegetables'][item]['stock']}")
+                            print(f"Remaing Stocks = {database['vegetables'][item]['stock']}")
 
-                        if database['vegetables'][item]['stock'] == 0:                   
-                            del database['vegetables'][item]
-                        
-                    else:
-                        print('Item not Found')
+                            if database['vegetables'][item]['stock'] == 0:                   
+                                del database['vegetables'][item]
+
+                            
+                        elif item.lower() in database['fruits']:
+                            qut = float(input(f'How much kilo you need for {database["fruits"][item]["name"]} : '))
+                            if qut < 0:
+                                print('The quantity should be more than 0')                    #Checking the quantity is more than 0
+                                buy(l,username)
+                                break
+                            if qut > database['fruits'][item]['stock']:                    #Checking the given quantity is less than the stock
+                                print(f'The quantity should be less than the TOTAL STOCK, Remaining Stock : {database["fruits"][item]["stock"]}')
+                                buy(l,username)
+                                break
+
+                            brougth_items.append(item)                                          #Adding the item into the cart
+                            items = (database['fruits'][item]['name'],qut)
+                            l.append(items)
+
+                            database['fruits'][item]['stock'] = database['fruits'][item]['stock'] - qut     
+
+                            print(f"Remaing Stocks = {database['fruits'][item]['stock']}")
+
+                            if database['fruits'][item]['stock'] == 0:                   
+                                del database['fruits'][item]
                 except ValueError:                                                    #Exception handling
                     print('Please enter an valid value...')
    
