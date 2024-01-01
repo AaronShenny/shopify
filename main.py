@@ -41,7 +41,7 @@ database = {     #The Whole Database .
             'price':'79RS',
             'stock':15
         },
-        'greenchilli':{
+        'green chilli':{
             'name':'Green chilli',
             'price':'46RS',
             'stock':12
@@ -350,16 +350,17 @@ def recipt(username):                                                   #Functio
     total_amount = 0  # Initialize the total amount variable
 
     print()
-    print('='*82)
-    print('RECEIPT'.center(75))
-    print('='*80)
+    print('=' * 70)
+    print('RECEIPT'.center(70))
+    print('=' * 70)
     time2 = time.asctime()                                              #Getting the current time
 
-    print('Name : ',username,'\t\t\t','Date : ',time2)
-    print('='*82)
+    print('Name : ',database['user'][username]['name'],'\t\t\t','Date : ',time2)
+    print('=' * 70)
  
-    print('Item\t\t\tRate\t\t\tQuantity\t\tAmount')
-    print('='*82)
+    print(''.ljust(8),'ITEM'.ljust(19),'RATE'.ljust(14),'QUANTITY'.ljust(17),'TOTAL')
+    print('=' * 70)
+    
     for i in  brougth_items:
         product_name, quantity = i
         price_per_kilo = 0
@@ -373,10 +374,10 @@ def recipt(username):                                                   #Functio
         total_price = price_per_kilo * quantity
         total_amount += total_price
 
-        print(product_name.ljust(20) ,price_per_kilo, " RS/kg".ljust(20) ,quantity ," kg".ljust(20) ,total_price , " RS".ljust(20))
-               
+        print(product_name.ljust(20) ,'|'.ljust(3),str(price_per_kilo).ljust(5), " RS/kg".ljust(8) ,'|'.ljust(4),str(quantity).ljust(3) ," kg".ljust(6) ,'|'.ljust(3) ,str(total_price).ljust(5) , " RS".ljust(20))
+          
     print()
-    print('=' * 82)
+    print('=' * 70)
     print('Total Amount :',total_amount,' RS')
 
 def login_checker(login):
