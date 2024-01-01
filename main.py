@@ -95,7 +95,7 @@ database = {     #The Whole Database .
         }
     },
     'fruits':{
-        'apple1':{
+        'apple':{
             'name':'Apple',
             'price':'190Rs',
             'stock':21
@@ -237,11 +237,19 @@ def buy(l,username):
             if change == 'yes':
                 for i in l:
                     if item.title() == i[0]:
-                        product,quantity = i   #Unpacking the tuple to change
-                        quantity = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : ')) #Asking the change
-                        t = product,quantity   #Packing the tuple
-                        l.remove(i)            #Removing the existing tuple
-                        l.append(t)            #Adding the new tuple into list
+                        if i[0].lower in database['vegetables']:
+                        
+                            product,quantity = i   #Unpacking the tuple to change
+                            quantity = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : ')) #Asking the change
+                            t = product,quantity   #Packing the tuple
+                            l.remove(i)            #Removing the existing tuple
+                            l.append(t)            #Adding the new tuple into list
+                        else:
+                            product,quantity = i   #Unpacking the tuple to change
+                            quantity = float(input(f'How much kilo you need for {database["fruits"][item]["name"]} : ')) #Asking the change
+                            t = product,quantity   #Packing the tuple
+                            l.remove(i)            #Removing the existing tuple
+                            l.append(t)
         else:
             for i in l:
                 if item in i[0]:
@@ -294,7 +302,9 @@ def buy(l,username):
 
                             if database['fruits'][item]['stock'] == 0:                   
                                 del database['fruits'][item]
-                        
+                        else:
+                            print('item not found')
+                       
                 except ValueError:                                                    #Exception handling
                     print('Please enter an valid value...')
    
@@ -335,19 +345,39 @@ def recipt(username):                                                   #Functio
     confirm =  input('Anything else ..? : ').lower()                    #Asking the user if they want to buy anything else
     if confirm == 'yes':
         l =  user_buy.get(username)
-        buy(l)
+        buy(l,username)
     brougth_items = user_buy.get(username)
+    total_amount = 0  # Initialize the total amount variable
+
     print()
-    print('='*55)
-    print('RECIPT'.center(50))
-    print('='*55)
+    print('='*59)
+    print('RECEIPT'.center(50))
+    print('='*59)
     time2 = time.asctime()                                              #Getting the current time
 
     print('Name : ',username,'\t\t','Date : ',time2)
+    print('='*59)
+ 
+    print('Item \t\t Rate \t\t\t Quantity \t Amount ')
+    print('='*59)
     for i in  brougth_items:
-        for j in i:
-            print(j,end=' ')
-        print()
+        product_name, quantity = i
+        price_per_kilo = 0
+
+        # Check if the product is a vegetable or a fruit
+        if product_name.lower() in database['vegetables']:
+            price_per_kilo = float(database['vegetables'][product_name.lower()]['price'][:-2])  # Extract price per kilo
+        elif product_name.lower() in database['fruits']:
+            price_per_kilo = float(database['fruits'][product_name.lower()]['price'][:-2])  # Extract price per kilo
+
+        total_price = price_per_kilo * quantity
+        total_amount += total_price
+
+        print(product_name,'\t\t\t',price_per_kilo,'RS/kg\t\t',quantity, 'kg\t\t',total_price,'RS')
+    print()
+    print('=' * 55)
+    print('Total Amount :',total_amount,' RS')
+
 def login_checker(login):
     if login != True:
         sign_in()
