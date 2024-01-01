@@ -150,7 +150,7 @@ database = {     #The Whole Database .
             'price':'260Rs',
             'stock':32
         },
-        'dragonfruiit':{
+        'dragonfruit':{
             'name':'Dragonfruit',
             'price':'299Rs',
             'stock':31
@@ -374,9 +374,7 @@ def recipt(username):                                                   #Functio
         total_amount += total_price
 
         print(product_name.ljust(20) ,price_per_kilo, " RS/kg".ljust(20) ,quantity ," kg".ljust(20) ,total_price , " RS".ljust(20))
-    
-    
-        #print(product_name,'\t\t\t',price_per_kilo,'RS/kg\t\t',quantity, 'kg\t\t',total_price,'RS')
+               
     print()
     print('=' * 82)
     print('Total Amount :',total_amount,' RS')
