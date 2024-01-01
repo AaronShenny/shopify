@@ -350,16 +350,16 @@ def recipt(username):                                                   #Functio
     total_amount = 0  # Initialize the total amount variable
 
     print()
-    print('='*59)
-    print('RECEIPT'.center(50))
-    print('='*59)
+    print('='*82)
+    print('RECEIPT'.center(75))
+    print('='*80)
     time2 = time.asctime()                                              #Getting the current time
 
-    print('Name : ',username,'\t\t','Date : ',time2)
-    print('='*59)
+    print('Name : ',username,'\t\t\t','Date : ',time2)
+    print('='*82)
  
-    print('Item \t\t Rate \t\t\t Quantity \t Amount ')
-    print('='*59)
+    print('Item\t\t\tRate\t\t\tQuantity\t\tAmount')
+    print('='*82)
     for i in  brougth_items:
         product_name, quantity = i
         price_per_kilo = 0
@@ -373,9 +373,12 @@ def recipt(username):                                                   #Functio
         total_price = price_per_kilo * quantity
         total_amount += total_price
 
-        print(product_name,'\t\t\t',price_per_kilo,'RS/kg\t\t',quantity, 'kg\t\t',total_price,'RS')
+        print(product_name.ljust(20) ,price_per_kilo, " RS/kg".ljust(20) ,quantity ," kg".ljust(20) ,total_price , " RS".ljust(20))
+    
+    
+        #print(product_name,'\t\t\t',price_per_kilo,'RS/kg\t\t',quantity, 'kg\t\t',total_price,'RS')
     print()
-    print('=' * 55)
+    print('=' * 82)
     print('Total Amount :',total_amount,' RS')
 
 def login_checker(login):
