@@ -294,6 +294,7 @@ def buy(l,username):
 
                             if database['fruits'][item]['stock'] == 0:                   
                                 del database['fruits'][item]
+                        
                 except ValueError:                                                    #Exception handling
                     print('Please enter an valid value...')
    
