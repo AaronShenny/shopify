@@ -28,6 +28,10 @@ database = {     #The Whole Database .
             'password':'aswi'
 
           
+        },
+        'admin' : {
+            'name' : 'ADMIN',
+            'password' : 'admin'
         }
     },
     'vegetables':{
@@ -189,7 +193,14 @@ def sign_in():
         print('\t\t\tLOGIN')
         print()
         username = input('Username : ')
-        if username in database['user']:                               #Checking given Username is matching with usernames in databse
+        if username == 'admin':
+            password1 = getpass.getpass(prompt = 'Password : ')
+            if password1 == database['user'][username]['password']:
+                print('ADMIN')
+                login = True
+                admin = True
+                return username,login,admin
+        elif username in database['user']:                               #Checking given Username is matching with usernames in databse
             password1 = getpass.getpass(prompt = 'Password : ')   
             if password1 == database['user'][username]['password']:    #Checking if the given password is correct with database
                 time.sleep(1)
@@ -198,7 +209,8 @@ def sign_in():
                 print('Welcome',database['user'][username]['name'])
                 username1 = username
                 login = True                                           #Intializing the varible as True
-                return username,login                                  #Returning username and login variable 
+                admin = False 
+                return username,login,admin                                  #Returning username and login variable 
                 break
             else:
                 login = False                                          #Intializing the varible as True
@@ -257,7 +269,7 @@ def buy(l,username):
                     print('Item is already added')
             else:
                 try:
-                    if item.lower() in database['vegetables'] or database['fruits']:          #Checking the product is in database
+                    if item.lower() in database['vegetables'] or item.lower() in database['fruits']:          #Checking the product is in database
                         if item.lower() in database['vegetables'] :
                             qut = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : ')) #Asking the quantity
                             if qut < 0:
@@ -302,8 +314,8 @@ def buy(l,username):
 
                             if database['fruits'][item]['stock'] == 0:                   
                                 del database['fruits'][item]
-                        else:
-                            print('item not found')
+                    else:
+                        print('item not found')
                        
                 except ValueError:                                                    #Exception handling
                     print('Please enter an valid value...')
@@ -383,7 +395,63 @@ def recipt(username):                                                   #Functio
 def login_checker(login):
     if login != True:
         sign_in()
-
+def adminf():
+    print('ADMIN PANEL')
+    print('1. Change the rate of the product')
+    print('2. Change the stock of the product')
+    while True:
+        choice = int(input('Enter the choice : '))
+        if choice == 1:
+            prodName = input('Product Name : ').lower()
+            if prodName in database['vegetables'] or prodName in database['fruits']:
+                if prodName in database['vegetables']:
+                    for i in database['vegetables']:
+                        if i == prodName:
+                            rate =  input('Enter the revised rate : ')
+                            database['vegetables'][prodName]['price'] = rate+'RS'
+                            print('Rate updated successfully..')
+                            print(f'PRODUCT : {database["vegetables"][prodName]["name"]}')
+                            print(f'RATE : {database["vegetables"][prodName]["price"]}')
+                elif prodName in database['fruits']:
+                    for i in database['fruits']:
+                        if i == prodName:
+                            rate =  input('Enter the revised rate : ')
+                            database['fruits'][prodName]['price'] = rate+'RS'
+                            print('Rate updated successfully..')
+                            print(f'PRODUCT : {database["fruits"][prodName]["name"]}')
+                            print(f'RATE : {database["fruits"][prodName]["price"]}')
+                else:
+                    print('404 Item Not Found')
+            else:
+                print('404 Item Not Found')
+        elif choice == 2:
+            prodName = input('Product Name : ').lower()
+            if prodName in database['vegetables'] or prodName in database['fruits']:
+                if prodName in database['vegetables']:
+                    for i in database['vegetables']:
+                        if i == prodName:
+                            stock =  input('Enter the revised rate : ')
+                            database['vegetables'][prodName]['stock'] = stock
+                            print('Rate updated successfully..')
+                            print(f'PRODUCT : {database["vegetables"][prodName]["name"]}')
+                            print(f'STOCK : {database["vegetables"][prodName]["stock"]}')
+                elif prodName in database['fruits']:
+                    for i in database['fruits']:
+                        if i == prodName:
+                            stock =  input('Enter the revised rate : ')
+                            database['fruits'][prodName]['stock'] = stock
+                            print('Rate updated successfully..')
+                            print(f'PRODUCT : {database["fruits"][prodName]["name"]}')
+                            print(f'STOCK : {database["fruits"][prodName]["stock"]}')
+                else:
+                    print('404 Item Not Found')
+            
+            else:
+                print('404 Item Not Found')
+        elif choice == 0 :
+            break
+        else:
+            print('Invalid Choice')
 print()
 print('='*55)
 print()
@@ -401,27 +469,31 @@ def main():
     username = None
     while True:
         time.sleep(1)
-        username,login = sign_in() 
+        username,login, admin = sign_in() 
         time.sleep(1)
-        list1(database)
-        print()
-        buyacceot =  input('Wanna buy something from our store ...?? [yes/no] : ').lower()   #Asking the user if they want to buy anything..reconfirming
-        if buyacceot == 'yes':
-            time.sleep(1)
-            l = []
+        if admin == False :
+
+            list1(database)
             print()
-            print('NOTE : Type  "0" or "exit" after finishing adding the products')
-            buy(l,username)
-            if user_buy[username] == []:
-                pass
+            buyacceot =  input('Wanna buy something from our store ...?? [yes/no] : ').lower()   #Asking the user if they want to buy anything..reconfirming
+            if buyacceot == 'yes':
+                time.sleep(1)
+                l = []
+                print()
+                print('NOTE : Type  "0" or "exit" after finishing adding the products')
+                buy(l,username)
+                if user_buy[username] == []:
+                    pass
+                else:
+                    recipt(username)
             else:
-                recipt(username)
-        else:
-            time.sleep(1)
-            print('Thank you for comming')
-            time.sleep(5)
-        break
-      
+                time.sleep(1)
+                print('Thank you for comming')
+                time.sleep(5)
+            break
+        elif admin == True:
+            adminf()
+            
 
 
 if __name__ == "__main__":
