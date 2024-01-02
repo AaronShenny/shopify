@@ -267,6 +267,8 @@ def buy(l,username):
                             print(f'Product : {database["fruits"][item]["name"]}')
                             print(f'Quantity : {database["fruits"][item]["stock"]}')
                             l.append(t)
+        elif item == '':
+            print('Enter a vaild product')
         else:
             for i in l:
                 if item in i[0]:
@@ -326,12 +328,11 @@ def buy(l,username):
                     print('Please enter an valid value...')
     
     if username in user_buy:
-        print(user_buy)
-        print(username)
         existing_items = user_buy[username]
         l1 = existing_items + l
         user_buy[username] = l1
         addInfo(user_buy)
+        return user_buy,l
         
     else:
         user_buy[username] = l
@@ -531,8 +532,6 @@ def main():
                 print()
                 print('NOTE : Type  "0" or "exit" after finishing adding the products')
                 userbuy, brougth_items = buy(l,username)
-                print(userbuy)
-                print(brougth_items)
                 if user_buy[username] == []:
                     pass
                 else:
