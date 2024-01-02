@@ -165,11 +165,11 @@ database = {     #The Whole Database .
 # Function to create a new user account
 def create_user(name):                   
     print('SIGN-UP')
-    print('NOTE : Sorry, Due to the limited knowlegde, Now creating account will be deleted after the program closes. Use the default username and password...')
+    print('NOTE : Sorry, Due to the limited knowledge, Now creating an account will be deleted after the program closes. Use the default username and password...')
     print('Creating a user account...')
     username = input('Username : ')
     if username in database['user']:  #This will check if the user had already created account
-        print('Same user has been found in our database. Please login ...')
+        print('Same user has been found in our database. Please login...')
         
     else:
         try: 
@@ -239,13 +239,13 @@ def buy(l,username):
             break
         elif item in brougth_items:
             print()                                                     #Checking the cart if the user had already brougtj
-            print('Item is already in the cart!!')
+            print('Item is already in the cart!!!')
             for i in l:
                 if item.title() == i[0]: 
                     print(f'Product : {i[0]}')
                     print(f'Quantity : {i[1]}') 
             print()
-            change = input('Do you want to change the quantity  ? : [yes/no] ')
+            change = input('Do you want to change the quantity ? [yes/no] : ')
             print()                    #Asking the user if they want to change the quantity
             if change == 'yes':
                 for i in l:
@@ -253,7 +253,7 @@ def buy(l,username):
                         if i[0].lower() in database['vegetables']:
                         
                             product,quantity = i   #Unpacking the tuple to change
-                            quantity = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : ')) #Asking the change
+                            quantity = float(input(f'How much kilo do you need for {database["vegetables"][item]["name"]} : ')) #Asking the change
                             t = product,quantity   #Packing the tuple
                             l.remove(i)            #Removing the existing tuple
                             print(f'Product : {database["vegetables"][item]["name"]}')
@@ -261,7 +261,7 @@ def buy(l,username):
                             l.append(t)            #Adding the new tuple into list
                         elif i[0].lower() in database['fruits']:
                             product,quantity = i   #Unpacking the tuple to change
-                            quantity = float(input(f'How much kilo you need for {database["fruits"][item]["name"]} : ')) #Asking the change
+                            quantity = float(input(f'How much kilo do you need for {database["fruits"][item]["name"]} : ')) #Asking the change
                             t = product,quantity   #Packing the tuple
                             l.remove(i)            #Removing the existing tuple
                             print(f'Product : {database["fruits"][item]["name"]}')
@@ -278,7 +278,7 @@ def buy(l,username):
                 try:
                     if item.lower() in database['vegetables'] or item.lower() in database['fruits']:          #Checking the product is in database
                         if item.lower() in database['vegetables'] :
-                            qut = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : ')) #Asking the quantity
+                            qut = float(input(f'How much kilo do you need for {database["vegetables"][item]["name"]} : ')) #Asking the quantity
                             if qut < 0:
                                 print('The quantity should be more than 0')                    #Checking the quantity is more than 0
                                 buy(l,username)
@@ -294,14 +294,14 @@ def buy(l,username):
 
                             database['vegetables'][item]['stock'] = database['vegetables'][item]['stock'] - qut     
 
-                            print(f"Remaing Stocks = {database['vegetables'][item]['stock']}")
+                            print(f"Remaining Stocks = {database['vegetables'][item]['stock']}")
 
                             if database['vegetables'][item]['stock'] == 0:                   
                                 del database['vegetables'][item]
 
                             
                         elif item.lower() in database['fruits']:
-                            qut = float(input(f'How much kilo you need for {database["fruits"][item]["name"]} : '))
+                            qut = float(input(f'How much kilo do you need for {database["fruits"][item]["name"]} : '))
                             if qut < 0:
                                 print('The quantity should be more than 0')                    #Checking the quantity is more than 0
                                 buy(l,username)
@@ -317,15 +317,15 @@ def buy(l,username):
 
                             database['fruits'][item]['stock'] = database['fruits'][item]['stock'] - qut     
 
-                            print(f"Remaing Stocks = {database['fruits'][item]['stock']}")
+                            print(f"Remaining Stocks = {database['fruits'][item]['stock']}")
 
                             if database['fruits'][item]['stock'] == 0:                   
                                 del database['fruits'][item]
                     else:
-                        print('item not found')
+                        print('Item not found')
                        
                 except ValueError:                                                    #Exception handling
-                    print('Please enter an valid value...')
+                    print('Please enter a valid value...')
     
     if username in user_buy:
         existing_items = user_buy[username]
@@ -371,7 +371,7 @@ def list1(database):
     print("------------------------------------------\t\t -----------------------------------------")
 
 def recipt(username,brougth_items):                                                   #Function for printing the recipt
-    confirm =  input('Anything else ..? : ').lower()                    #Asking the user if they want to buy anything else
+    confirm =  input('Anything else ? : ').lower()                    #Asking the user if they want to buy anything else
     if confirm == 'yes':
         l =  user_buy.get(username)
         userbuy, brougth_items = buy(l,username)
@@ -426,7 +426,7 @@ def adminf():
                         if i == prodName:
                             rate =  input('Enter the revised rate : ')
                             database['vegetables'][prodName]['price'] = rate+'RS'
-                            print('Rate updated successfully..')
+                            print('Rate updated successfully...')
                             print(f'PRODUCT : {database["vegetables"][prodName]["name"]}')
                             print(f'RATE : {database["vegetables"][prodName]["price"]}')
                 elif prodName in database['fruits']:
@@ -434,7 +434,7 @@ def adminf():
                         if i == prodName:
                             rate =  input('Enter the revised rate : ')
                             database['fruits'][prodName]['price'] = rate+'RS'
-                            print('Rate updated successfully..')
+                            print('Rate updated successfully...')
                             print(f'PRODUCT : {database["fruits"][prodName]["name"]}')
                             print(f'RATE : {database["fruits"][prodName]["price"]}')
                 else:
@@ -525,7 +525,7 @@ def main():
 
             list1(database)
             print()
-            buyacceot =  input('Wanna buy something from our store ...?? [yes/no] : ').lower()   #Asking the user if they want to buy anything..reconfirming
+            buyacceot =  input('Wanna buy something from our store ??? [yes/no] : ').lower()   #Asking the user if they want to buy anything..reconfirming
             if buyacceot == 'yes':
                 time.sleep(1)
                 l = []
@@ -538,7 +538,7 @@ def main():
                     recipt(username,brougth_items)
             else:
                 time.sleep(1)
-                print('Thank you for comming')
+                print('Thank you for coming')
                 time.sleep(5)
             break
         elif admin == True:
@@ -550,9 +550,9 @@ if __name__ == "__main__":
     main()
     while True:
         time.sleep(2)
-        choice = input("Press 'q' to quit or any other key to continue shopping...: ")  #Asking the user if they want to continue shopping
+        choice = input("Press 'q' to quit or any other key to continue shopping : ")  #Asking the user if they want to continue shopping
         if choice.lower() == 'q':
-            print('Thank you for coming\nVisit again!!')
+            print('Thank you for coming\nVisit again!!!')
             print("Exiting the program...")
             break
         else:
