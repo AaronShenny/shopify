@@ -231,13 +231,13 @@ def sign_in():
 
 # Function for purchasing items
 def buy(l,username):                
-    brougth_items = []
+    brought_items = []
     while True:
         print()
         item = input('Enter an item : ').lower()                        #User enters the product they need
         if item == 'exit' or item == '0':                               #Exiting the loop
             break
-        elif item in brougth_items:
+        elif item in brought_items:
             print()                                                     #Checking the cart if the user had already brougtj
             print('Item is already in the cart!!!')
             for i in l:
@@ -288,7 +288,7 @@ def buy(l,username):
                                 buy(l,username)
                                 break
 
-                            brougth_items.append(item)                                          #Adding the item into the cart
+                            brought_items.append(item)                                          #Adding the item into the cart
                             items = (database['vegetables'][item]['name'],qut)
                             l.append(items)
 
@@ -311,7 +311,7 @@ def buy(l,username):
                                 buy(l,username)
                                 break
 
-                            brougth_items.append(item)                                          #Adding the item into the cart
+                            brought_items.append(item)                                          #Adding the item into the cart
                             items = (database['fruits'][item]['name'],qut)
                             l.append(items)
 
@@ -370,11 +370,11 @@ def list1(database):
         print(f'|{veg_name}|{veg_price}|{veg_stock}|\t\t|{fruit_name}|{fruit_price}|{fruit_stock}|')
     print("------------------------------------------\t\t -----------------------------------------")
 
-def recipt(username,brougth_items):                                                   #Function for printing the recipt
+def recipt(username,brought_items):                                                   #Function for printing the recipt
     confirm =  input('Anything else ? : ').lower()                    #Asking the user if they want to buy anything else
     if confirm == 'yes':
         l =  user_buy.get(username)
-        userbuy, brougth_items = buy(l,username)
+        userbuy, brought_items = buy(l,username)
     total_amount = 0  # Initialize the total amount variable
 
     print()
@@ -389,7 +389,7 @@ def recipt(username,brougth_items):                                             
     print(''.ljust(8),'ITEM'.ljust(19),'RATE'.ljust(14),'QUANTITY'.ljust(17),'TOTAL')
     print('=' * 70)
     
-    for i in  brougth_items:
+    for i in  brought_items:
         product_name, quantity = i
         price_per_kilo = 0
 
@@ -525,17 +525,17 @@ def main():
 
             list1(database)
             print()
-            buyacceot =  input('Wanna buy something from our store ??? [yes/no] : ').lower()   #Asking the user if they want to buy anything..reconfirming
-            if buyacceot == 'yes':
+            buy_accept =  input('Wanna buy something from our store ??? [yes/no] : ').lower()   #Asking the user if they want to buy anything..reconfirming
+            if buy_accept == 'yes':
                 time.sleep(1)
                 l = []
                 print()
                 print('NOTE : Type  "0" or "exit" after finishing adding the products')
-                userbuy, brougth_items = buy(l,username)
+                userbuy, brought_items = buy(l,username)
                 if user_buy[username] == []:
                     pass
                 else:
-                    recipt(username,brougth_items)
+                    recipt(username,brought_items)
             else:
                 time.sleep(1)
                 print('Thank you for coming')
