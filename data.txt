@@ -1,1 +1,1 @@
-user_buy = {'user': [('Tomato', 2.0), ('Onion', 3.0), ('Tomato', 1.0), ('Apple', 2.0)], 'aaronshenny': []}
+user_buy = {'user': [('Tomato', 2.0), ('Onion', 3.0)]}

@@ -214,9 +214,10 @@ def sign_in():
                 break
             else:
                 login = False                                          #Intializing the varible as True
+                admin = False
                 print('Incorrect Password...')
                 login_checker(login)   
-                return username,login                                  #Returning username and login variable 
+                return username,login,admin                                  #Returning username and login variable 
         else:  
             time.sleep(1)
             print('Account not Found')
@@ -323,18 +324,20 @@ def buy(l,username):
                        
                 except ValueError:                                                    #Exception handling
                     print('Please enter an valid value...')
+    
     if username in user_buy:
         print(user_buy)
         print(username)
         existing_items = user_buy[username]
-        l = existing_items + l
-        user_buy[username] = l
+        l1 = existing_items + l
+        user_buy[username] = l1
         addInfo(user_buy)
-        return user_buy
+        
     else:
         user_buy[username] = l
         addInfo(user_buy)
-        return user_buy
+        return user_buy,l
+        
              
 
 #Function for listing the items
@@ -366,12 +369,11 @@ def list1(database):
         print(f'|{veg_name}|{veg_price}|{veg_stock}|\t\t|{fruit_name}|{fruit_price}|{fruit_stock}|')
     print("------------------------------------------\t\t -----------------------------------------")
 
-def recipt(username):                                                   #Function for printing the recipt
+def recipt(username,brougth_items):                                                   #Function for printing the recipt
     confirm =  input('Anything else ..? : ').lower()                    #Asking the user if they want to buy anything else
     if confirm == 'yes':
         l =  user_buy.get(username)
-        buy(l,username)
-    brougth_items = user_buy.get(username)
+        userbuy, brougth_items = buy(l,username)
     total_amount = 0  # Initialize the total amount variable
 
     print()
@@ -504,7 +506,10 @@ print('  ____) | |  | | |__| | |    _| |_| |       | |   ')
 print(' |_____/|_|  |_|\____/|_|   |_____|_|       |_|   ')
 print()
 print('='*55)
-user_buy =  eval(getInfo('user_buy'))
+if not getInfo('user_buy'):
+    user_buy={}
+else:
+    user_buy =  eval(getInfo('user_buy'))
 
 
 time.sleep(1)
@@ -525,11 +530,13 @@ def main():
                 l = []
                 print()
                 print('NOTE : Type  "0" or "exit" after finishing adding the products')
-                buy(l,username)
+                userbuy, brougth_items = buy(l,username)
+                print(userbuy)
+                print(brougth_items)
                 if user_buy[username] == []:
                     pass
                 else:
-                    recipt(username)
+                    recipt(username,brougth_items)
             else:
                 time.sleep(1)
                 print('Thank you for comming')
