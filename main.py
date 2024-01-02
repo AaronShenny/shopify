@@ -7,9 +7,9 @@
 # Import necessary modules
 import getpass  # Module to input passwords without echoing
 import time  # Module for time-related functions
-
+from pathlib import Path
 # Initialize variables
-user_buy = {}  # Stores user purchases
+  # Stores user purchases
 
 # The database containing user information, vegetables, and fruits
 database = {     #The Whole Database . 
@@ -249,18 +249,22 @@ def buy(l,username):
             if change == 'yes':
                 for i in l:
                     if item.title() == i[0]:
-                        if i[0].lower in database['vegetables']:
+                        if i[0].lower() in database['vegetables']:
                         
                             product,quantity = i   #Unpacking the tuple to change
                             quantity = float(input(f'How much kilo you need for {database["vegetables"][item]["name"]} : ')) #Asking the change
                             t = product,quantity   #Packing the tuple
                             l.remove(i)            #Removing the existing tuple
+                            print(f'Product : {database["vegetables"][item]["name"]}')
+                            print(f'Quantity : {database["vegetables"][item]["stock"]}')
                             l.append(t)            #Adding the new tuple into list
-                        else:
+                        elif i[0].lower() in database['fruits']:
                             product,quantity = i   #Unpacking the tuple to change
                             quantity = float(input(f'How much kilo you need for {database["fruits"][item]["name"]} : ')) #Asking the change
                             t = product,quantity   #Packing the tuple
                             l.remove(i)            #Removing the existing tuple
+                            print(f'Product : {database["fruits"][item]["name"]}')
+                            print(f'Quantity : {database["fruits"][item]["stock"]}')
                             l.append(t)
         else:
             for i in l:
@@ -319,10 +323,19 @@ def buy(l,username):
                        
                 except ValueError:                                                    #Exception handling
                     print('Please enter an valid value...')
-   
-    user_buy[username] = l
-    
-    return user_buy             
+    if username in user_buy:
+        print(user_buy)
+        print(username)
+        existing_items = user_buy[username]
+        l = existing_items + l
+        user_buy[username] = l
+        addInfo(user_buy)
+        return user_buy
+    else:
+        user_buy[username] = l
+        addInfo(user_buy)
+        return user_buy
+             
 
 #Function for listing the items
 def list1(database):                                                                   
@@ -399,6 +412,7 @@ def adminf():
     print('ADMIN PANEL')
     print('1. Change the rate of the product')
     print('2. Change the stock of the product')
+    print('3. ORDERS')
     while True:
         choice = int(input('Enter the choice : '))
         if choice == 1:
@@ -448,10 +462,38 @@ def adminf():
             
             else:
                 print('404 Item Not Found')
+        elif choice ==3:
+            print('ORDERS')
+            user_buy1 = getInfo('user_buy')
+            print(user_buy1)
         elif choice == 0 :
             break
         else:
             print('Invalid Choice')
+def addInfo(var):
+    for name, value in globals().items():  # Use locals() for local variables
+        if value is var:
+            
+            var_name = name
+    f = open(Path('data.txt'),'w')
+    f.write(f'{var_name} = {var}\n')
+    f.close()
+def getInfo(var):
+    
+    with open(Path('data.txt'), 'r') as file:
+    # Read each line in the file
+        for line in file:
+            # Check if the line contains the variable you want
+            if line.startswith(var):
+                # Split the line at '=' to get the value part
+                variable_value = line.split('=')[-1].strip()
+                # Print the variable value
+                return variable_value
+                  # Stop reading after finding the variable
+            else:
+                print('404 Item Not Found')
+                
+
 print()
 print('='*55)
 print()
@@ -462,6 +504,8 @@ print('  ____) | |  | | |__| | |    _| |_| |       | |   ')
 print(' |_____/|_|  |_|\____/|_|   |_____|_|       |_|   ')
 print()
 print('='*55)
+user_buy =  eval(getInfo('user_buy'))
+
 
 time.sleep(1)
 n=0
