@@ -37,63 +37,63 @@ database = {     #The Whole Database .
     'vegetables':{
         'tomato' : {
             'name' : 'Tomato',
-            'price' : '48RS',
+            'price' : '₹ 48',
                 'stock' : 10            #Vegetable Database
         },
         'onion': {
             'name':'Onion',
-            'price':'79RS',
+            'price':'₹ 79',
             'stock':15
         },
         'green chilli':{
             'name':'Green chilli',
-            'price':'46RS',
+            'price':'₹ 46',
             'stock':12
         },
         'beetroot':{
             'name':'Beetroot',
-            'price':'34RS',
+            'price':'₹ 34',
             'stock':14                               
         },
         'potato':{
             'name':'Potato',
-            'price':'40RS',
+            'price':'₹ 40',
             'stock':16
         },
         'cabbage':{
             'name':'Cabbage',
-            'price':'25RS',
+            'price':'₹ 25',
             'stock': 13
         },
         'carrot':{
             'name':'Carrot',
-            'price':'39RS',
+            'price':'₹ 39',
             'stock':17
         
         },
         'corn':{
             'name':'Corn',
-            'price':'35RS',
+            'price':'₹ 35',
             'stock':19
         },
         'coconut':{
             'name':'Coconut',
-            'price':'37RS',
+            'price':'₹ 37',
             'stock':16
         },
         'ginger':{
             'name':'Ginger',
-            'price':'111RS',
+            'price':'₹ 111',
             'stock':20
         },
         'elephant yam':{
             'name':'Elephant Yam',
-            'price':'34RS',
+            'price':'₹ 34',
             'stock':15
         },
         'brinjal':{
             'name':'Brinjal',
-            'price':'33RS',
+            'price':'₹ 33',
             'stock':18
 
         }
@@ -101,62 +101,62 @@ database = {     #The Whole Database .
     'fruits':{
         'apple':{
             'name':'Apple',
-            'price':'190Rs',
+            'price':'₹ 190',
             'stock':21
         },
         'banana':{
             'name':'Banana',
-            'price':'55Rs',
+            'price':'₹ 55',
             'stock': 24
         },
         'orange':{
             'name':'Orange',
-            'price':'65Rs',
+            'price':'₹ 65',
             'stock':27
         },
         'mango':{
             'name':'Mango',
-            'price':'89Rs',
+            'price':'₹ 89',
             'stock':13
         },
         'watermelon':{
             'name':'Watermelon',
-            'price':'28Rs',
+            'price':'₹ 28',
             'stock':28
         },
         'grapes':{
             'name':'Grapes',
-            'price':'150Rs',
+            'price':'₹ 150',
             'stock':12
         },
         'papaya':{
             'name':'Papaya',
-            'price':'35Rs',
+            'price':'₹ 35',
             'stock':19
         },
         'guava':{
             'name':'Guava',
-            'price':'89Rs',
+            'price':'₹ 89',
             'stock':11
         },
         'pineapple':{
             'name':'Pineapple',
-            'price':'35Rs',
+            'price':'₹ 35',
             'stock':27
         },
         'pomegranate':{
             'name':'Pomegranate',
-            'price':'189Rs',
+            'price':'₹ 189',
             'stock':30
         },
         'avocado':{
             'name':'Avocado',
-            'price':'260Rs',
+            'price':'₹ 260',
             'stock':32
         },
         'dragonfruit':{
             'name':'Dragonfruit',
-            'price':'299Rs',
+            'price':'₹ 299',
             'stock':31
         
         }
@@ -386,7 +386,7 @@ def recipt(username,brought_items):                                             
     print('Name : ',database['user'][username]['name'],'\t\t\t','Date : ',time2)
     print('=' * 70)
  
-    print(''.ljust(8),'ITEM'.ljust(19),'RATE'.ljust(14),'QUANTITY'.ljust(17),'TOTAL')
+    print(''.ljust(8),'ITEM'.ljust(19),'RATE'.ljust(14),'QUANTITY'.ljust(17),'TOTAL'.ljust(8))
     print('=' * 70)
     
     for i in  brought_items:
@@ -395,28 +395,32 @@ def recipt(username,brought_items):                                             
 
         # Check if the product is a vegetable or a fruit
         if product_name.lower() in database['vegetables']:
-            price_per_kilo = float(database['vegetables'][product_name.lower()]['price'][:-2])  # Extract price per kilo
+            price_per_kilo = float(database['vegetables'][product_name.lower()]['price'][2:])  # Extract price per kilo
         elif product_name.lower() in database['fruits']:
-            price_per_kilo = float(database['fruits'][product_name.lower()]['price'][:-2])  # Extract price per kilo
+            price_per_kilo = float(database['fruits'][product_name.lower()]['price'][2:])  # Extract price per kilo
 
         total_price = price_per_kilo * quantity
         total_amount += total_price
 
-        print(product_name.ljust(20) ,'|'.ljust(3),str(price_per_kilo).ljust(5), " RS/kg".ljust(8) ,'|'.ljust(4),str(quantity).ljust(3) ," kg".ljust(6) ,'|'.ljust(3) ,str(total_price).ljust(5) , " RS".ljust(20))
-          
+        print(product_name.ljust(20) ,'|'.ljust(3),'₹',str(price_per_kilo).ljust(5), "/kg".ljust(8) ,'|'.ljust(4),str(quantity).ljust(3) ,"kg".ljust(6) ,'|'.ljust(3),'₹',str(total_price).ljust(5))
+
     print()
     print('=' * 70)
-    print('Total Amount :',total_amount,' RS')
+    print('Total Amount :','₹',total_amount)
 
 def login_checker(login):
     if login != True:
         sign_in()
 def adminf():
+    print()
     print('ADMIN PANEL')
+    print('~~~~~~~~~~~')
     print('1. Change the rate of the product')
     print('2. Change the stock of the product')
     print('3. ORDERS')
+    print('0. Exit admin panel')
     while True:
+        print()
         choice = int(input('Enter the choice : '))
         if choice == 1:
             prodName = input('Product Name : ').lower()
@@ -425,7 +429,7 @@ def adminf():
                     for i in database['vegetables']:
                         if i == prodName:
                             rate =  input('Enter the revised rate : ')
-                            database['vegetables'][prodName]['price'] = rate+'RS'
+                            database['vegetables'][prodName]['price'] = '₹ '+rate
                             print('Rate updated successfully...')
                             print(f'PRODUCT : {database["vegetables"][prodName]["name"]}')
                             print(f'RATE : {database["vegetables"][prodName]["price"]}')
@@ -433,7 +437,7 @@ def adminf():
                     for i in database['fruits']:
                         if i == prodName:
                             rate =  input('Enter the revised rate : ')
-                            database['fruits'][prodName]['price'] = rate+'RS'
+                            database['fruits'][prodName]['price'] = '₹ '+rate
                             print('Rate updated successfully...')
                             print(f'PRODUCT : {database["fruits"][prodName]["name"]}')
                             print(f'RATE : {database["fruits"][prodName]["price"]}')
@@ -447,17 +451,17 @@ def adminf():
                 if prodName in database['vegetables']:
                     for i in database['vegetables']:
                         if i == prodName:
-                            stock =  input('Enter the revised rate : ')
+                            stock =  input('Enter the revised stock number : ')
                             database['vegetables'][prodName]['stock'] = stock
-                            print('Rate updated successfully..')
+                            print('Stock updated successfully...')
                             print(f'PRODUCT : {database["vegetables"][prodName]["name"]}')
                             print(f'STOCK : {database["vegetables"][prodName]["stock"]}')
                 elif prodName in database['fruits']:
                     for i in database['fruits']:
                         if i == prodName:
-                            stock =  input('Enter the revised rate : ')
+                            stock =  input('Enter the revised stock number : ')
                             database['fruits'][prodName]['stock'] = stock
-                            print('Rate updated successfully..')
+                            print('Stock updated successfully...')
                             print(f'PRODUCT : {database["fruits"][prodName]["name"]}')
                             print(f'STOCK : {database["fruits"][prodName]["stock"]}')
                 else:
@@ -493,8 +497,7 @@ def getInfo(var):
                 # Print the variable value
                 return variable_value
                   # Stop reading after finding the variable
-            else:
-                print('404 Item Not Found')
+            
                 
 
 print()
@@ -509,6 +512,7 @@ print()
 print('='*55)
 if not getInfo('user_buy'):
     user_buy={}
+   # print(user_buy)
 else:
     user_buy =  eval(getInfo('user_buy'))
 
