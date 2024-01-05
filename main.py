@@ -493,8 +493,7 @@ def getInfo(var):
                 # Print the variable value
                 return variable_value
                   # Stop reading after finding the variable
-            else:
-                print('404 Item Not Found')
+            
                 
 
 print()
@@ -509,6 +508,7 @@ print()
 print('='*55)
 if not getInfo('user_buy'):
     user_buy={}
+   # print(user_buy)
 else:
     user_buy =  eval(getInfo('user_buy'))
 
