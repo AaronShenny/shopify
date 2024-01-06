@@ -216,7 +216,7 @@ def sign_in():
                 login = False                                          #Intializing the varible as True
                 admin = False
                 print('Incorrect Password...')
-                login_checker(login)   
+                   
                 return username,login,admin                                  #Returning username and login variable 
         else:  
             time.sleep(1)
@@ -410,11 +410,14 @@ def recipt(username,brought_items):                                             
 
 def login_checker(login):
     if login != True:
-        sign_in()
+        main()
+        
 def adminf():
     print()
+    print('~~~~~~~~~~~')
     print('ADMIN PANEL')
     print('~~~~~~~~~~~')
+    print()
     print('1. Change the rate of the product')
     print('2. Change the stock of the product')
     print('3. ORDERS')
@@ -470,9 +473,23 @@ def adminf():
             else:
                 print('404 Item Not Found')
         elif choice ==3:
+            print()
             print('ORDERS')
-            user_buy1 = getInfo('user_buy')
+            user_buy1 = eval(getInfo('user_buy'))
             print(user_buy1)
+            for i in user_buy1:
+                print()
+                print(i)
+                print('|------------------------------------|')
+                print(''.ljust(10),'USERNAME : ',i.upper())
+                print('|------------------------------------|')
+                print(''.ljust(8),'ITEM'.ljust(15),'QUANTITY'.ljust(10))
+                print('|------------------------------------|')
+                
+
+                for j in user_buy1[i]:
+                    #print(' ',j[0].ljust(),j[1])
+                    print('|',j[0].ljust(17) ,'|'.ljust(8),'₹',str(j[1]).ljust(5),'|')
         elif choice == 0 :
             break
         else:
@@ -520,34 +537,46 @@ else:
 time.sleep(1)
 n=0
 def main():
+    print('testpass1')
     username = None
     while True:
-        time.sleep(1)
-        username,login, admin = sign_in() 
-        time.sleep(1)
-        if admin == False :
-
-            list1(database)
-            print()
-            buy_accept =  input('Wanna buy something from our store ??? [yes/no] : ').lower()   #Asking the user if they want to buy anything..reconfirming
-            if buy_accept == 'yes':
-                time.sleep(1)
-                l = []
-                print()
-                print('NOTE : Type  "0" or "exit" after finishing adding the products')
-                userbuy, brought_items = buy(l,username)
-                if user_buy[username] == []:
-                    pass
-                else:
-                    recipt(username,brought_items)
+            print('testpass2')
+            time.sleep(1)
+            username,login, admin = sign_in()
+            print(username,login,admin)
+            if login == False:
+                login_checker(login)
             else:
+                print('testpass3') 
                 time.sleep(1)
-                print('Thank you for coming')
-                time.sleep(5)
-            break
-        elif admin == True:
-            adminf()
-            
+                print(admin)
+                if admin == False :
+                    print('testpass4')
+                    list1(database)
+                    print()
+                    buy_accept =  input('Wanna buy something from our store ??? [yes/no] : ').lower()   #Asking the user if they want to buy anything..reconfirming
+                    if buy_accept == 'yes':
+                        time.sleep(1)
+                        l = []
+                        
+                        print()
+                        print('NOTE : Type  "0" or "exit" after finishing adding the products')
+                        userbuy, brought_items = buy(l,username)
+                        if user_buy[username] == []:
+                            pass
+                        else:
+                            recipt(username,brought_items)
+                            break
+                    else:
+                        time.sleep(1)
+                        print('Thank you for coming')
+                        time.sleep(5)
+                    break
+                elif admin == True:
+                    adminf()
+                    break
+                else:
+                    print('ERROR')
 
 
 if __name__ == "__main__":
