@@ -196,10 +196,15 @@ def sign_in():
         if username == 'admin':
             password1 = getpass.getpass(prompt = 'Password : ')
             if password1 == database['user'][username]['password']:
-                print('ADMIN')
                 login = True
                 admin = True
                 return username,login,admin
+            else:
+                login = False
+                admin = False
+                print('Incorrect Password')
+                return username,login,admin
+
         elif username in database['user']:                               #Checking given Username is matching with usernames in databse
             password1 = getpass.getpass(prompt = 'Password : ')   
             if password1 == database['user'][username]['password']:    #Checking if the given password is correct with database
@@ -424,76 +429,84 @@ def adminf():
     print('0. Exit admin panel')
     while True:
         print()
-        choice = int(input('Enter the choice : '))
-        if choice == 1:
-            prodName = input('Product Name : ').lower()
-            if prodName in database['vegetables'] or prodName in database['fruits']:
-                if prodName in database['vegetables']:
-                    for i in database['vegetables']:
-                        if i == prodName:
-                            rate =  input('Enter the revised rate : ')
-                            database['vegetables'][prodName]['price'] = '₹ '+rate
-                            print('Rate updated successfully...')
-                            print(f'PRODUCT : {database["vegetables"][prodName]["name"]}')
-                            print(f'RATE : {database["vegetables"][prodName]["price"]}')
-                elif prodName in database['fruits']:
-                    for i in database['fruits']:
-                        if i == prodName:
-                            rate =  input('Enter the revised rate : ')
-                            database['fruits'][prodName]['price'] = '₹ '+rate
-                            print('Rate updated successfully...')
-                            print(f'PRODUCT : {database["fruits"][prodName]["name"]}')
-                            print(f'RATE : {database["fruits"][prodName]["price"]}')
+        try:
+            choice = int(input('Enter the choice : '))
+            if choice == 1:
+                prodName = input('Product Name : ').lower()
+                if prodName in database['vegetables'] or prodName in database['fruits']:
+                    if prodName in database['vegetables']:
+                        for i in database['vegetables']:
+                            if i == prodName:
+                                rate =  input('Enter the revised rate : ')
+                                database['vegetables'][prodName]['price'] = '₹ '+rate
+                                print('Rate updated successfully...')
+                                print(f'PRODUCT : {database["vegetables"][prodName]["name"]}')
+                                print(f'RATE : {database["vegetables"][prodName]["price"]}')
+                    elif prodName in database['fruits']:
+                        for i in database['fruits']:
+                            if i == prodName:
+                                rate =  input('Enter the revised rate : ')
+                                database['fruits'][prodName]['price'] = '₹ '+rate
+                                print('Rate updated successfully...')
+                                print(f'PRODUCT : {database["fruits"][prodName]["name"]}')
+                                print(f'RATE : {database["fruits"][prodName]["price"]}')
+                    else:
+                        print('404 Item Not Found')
                 else:
                     print('404 Item Not Found')
-            else:
-                print('404 Item Not Found')
-        elif choice == 2:
-            prodName = input('Product Name : ').lower()
-            if prodName in database['vegetables'] or prodName in database['fruits']:
-                if prodName in database['vegetables']:
-                    for i in database['vegetables']:
-                        if i == prodName:
-                            stock =  input('Enter the revised stock number : ')
-                            database['vegetables'][prodName]['stock'] = stock
-                            print('Stock updated successfully...')
-                            print(f'PRODUCT : {database["vegetables"][prodName]["name"]}')
-                            print(f'STOCK : {database["vegetables"][prodName]["stock"]}')
-                elif prodName in database['fruits']:
-                    for i in database['fruits']:
-                        if i == prodName:
-                            stock =  input('Enter the revised stock number : ')
-                            database['fruits'][prodName]['stock'] = stock
-                            print('Stock updated successfully...')
-                            print(f'PRODUCT : {database["fruits"][prodName]["name"]}')
-                            print(f'STOCK : {database["fruits"][prodName]["stock"]}')
-                else:
-                    print('404 Item Not Found')
-            
-            else:
-                print('404 Item Not Found')
-        elif choice ==3:
-            print()
-            print('ORDERS')
-            user_buy1 = eval(getInfo('user_buy'))
-            print(user_buy1)
-            for i in user_buy1:
-                print()
-                print(i)
-                print('|------------------------------------|')
-                print(''.ljust(10),'USERNAME : ',i.upper())
-                print('|------------------------------------|')
-                print(''.ljust(8),'ITEM'.ljust(15),'QUANTITY'.ljust(10))
-                print('|------------------------------------|')
+            elif choice == 2:
+                prodName = input('Product Name : ').lower()
+                if prodName in database['vegetables'] or prodName in database['fruits']:
+                    if prodName in database['vegetables']:
+                        for i in database['vegetables']:
+                            if i == prodName:
+                                stock =  input('Enter the revised stock number : ')
+                                database['vegetables'][prodName]['stock'] = stock
+                                print('Stock updated successfully...')
+                                print(f'PRODUCT : {database["vegetables"][prodName]["name"]}')
+                                print(f'STOCK : {database["vegetables"][prodName]["stock"]}')
+                    elif prodName in database['fruits']:
+                        for i in database['fruits']:
+                            if i == prodName:
+                                stock =  input('Enter the revised stock number : ')
+                                database['fruits'][prodName]['stock'] = stock
+                                print('Stock updated successfully...')
+                                print(f'PRODUCT : {database["fruits"][prodName]["name"]}')
+                                print(f'STOCK : {database["fruits"][prodName]["stock"]}')
+                    else:
+                        print('404 Item Not Found')
                 
+                else:
+                    print('404 Item Not Found')
+            elif choice ==3:
+                print()
+                print('ORDERS')
+                if not getInfo('user_buy'):
+                    print('No recent Orders')
+                else:
+                    user_buy1 = eval(getInfo('user_buy'))
+                    #print(user_buy1)
+                    for i in user_buy1:
+                        print()
+                        #print(i)
+                        print('|------------------------------------|')
+                        print('|'.ljust(10),'USERNAME : ',i.upper(),'|')
+                        print('|------------------------------------|')
+                        print('|'.ljust(8),'ITEM'.ljust(15),'QUANTITY'.ljust(11),'|')
+                        print('|------------------------------------|')
+                        
 
-                for j in user_buy1[i]:
-                    #print(' ',j[0].ljust(),j[1])
-                    print('|',j[0].ljust(17) ,'|'.ljust(8),'₹',str(j[1]).ljust(5),'|')
-        elif choice == 0 :
-            break
-        else:
-            print('Invalid Choice')
+                        for j in user_buy1[i]:
+                            #print(' ',j[0].ljust(),j[1])
+                            print('|',j[0].ljust(17) ,'|'.ljust(8),'₹',str(j[1]).ljust(5),'|')
+                        print('|------------------------------------|')
+            elif choice == 0 :
+                break
+            else:
+                print('Invalid Choice')
+        except ValueError as Error:
+            print('Enter the valid input')
+        
 def addInfo(var):
     for name, value in globals().items():  # Use locals() for local variables
         if value is var:
@@ -511,9 +524,10 @@ def getInfo(var):
             if line.startswith(var):
                 # Split the line at '=' to get the value part
                 variable_value = line.split('=')[-1].strip()
-                # Print the variable value
+                
+                #variable_value = eval(variable_value)
                 return variable_value
-                  # Stop reading after finding the variable
+                
             
                 
 
@@ -537,21 +551,21 @@ else:
 time.sleep(1)
 n=0
 def main():
-    print('testpass1')
+
     username = None
     while True:
-            print('testpass2')
+            
             time.sleep(1)
             username,login, admin = sign_in()
-            print(username,login,admin)
+        
             if login == False:
                 login_checker(login)
             else:
-                print('testpass3') 
+                
                 time.sleep(1)
                 print(admin)
                 if admin == False :
-                    print('testpass4')
+                    
                     list1(database)
                     print()
                     buy_accept =  input('Wanna buy something from our store ??? [yes/no] : ').lower()   #Asking the user if they want to buy anything..reconfirming
