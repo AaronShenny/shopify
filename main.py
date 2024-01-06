@@ -574,7 +574,7 @@ def main():
                         l = []
                         
                         print()
-                        print('NOTE : Type  "0" or "exit" after finishing adding the products')
+                        print('NOTE : Please enter "0" or "exit" once you have completed adding the products.')
                         userbuy, brought_items = buy(l,username)
                         if user_buy[username] == []:
                             pass
