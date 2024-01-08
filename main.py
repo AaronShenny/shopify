@@ -258,7 +258,7 @@ def buy(l,username):
                         if i[0].lower() in database['vegetables']:
                         
                             product,quantity = i   #Unpacking the tuple to change
-                            quantity = float(input(f'How much kilo do you need for {database["vegetables"][item]["name"]} : ')) #Asking the change
+                            quantity = float(input(f'How much kilo of {database["vegetables"][item]["name"]} do you need ? : ')) #Asking the change
                             t = product,quantity   #Packing the tuple
                             l.remove(i)            #Removing the existing tuple
                             print(f'Product : {database["vegetables"][item]["name"]}')
@@ -266,7 +266,7 @@ def buy(l,username):
                             l.append(t)            #Adding the new tuple into list
                         elif i[0].lower() in database['fruits']:
                             product,quantity = i   #Unpacking the tuple to change
-                            quantity = float(input(f'How much kilo do you need for {database["fruits"][item]["name"]} : ')) #Asking the change
+                            quantity = float(input(f'How much kilo of {database["fruits"][item]["name"]} do you need ? : ')) #Asking the change
                             t = product,quantity   #Packing the tuple
                             l.remove(i)            #Removing the existing tuple
                             print(f'Product : {database["fruits"][item]["name"]}')
@@ -283,7 +283,7 @@ def buy(l,username):
                 try:
                     if item.lower() in database['vegetables'] or item.lower() in database['fruits']:          #Checking the product is in database
                         if item.lower() in database['vegetables'] :
-                            qut = float(input(f'How much kilo do you need for {database["vegetables"][item]["name"]} : ')) #Asking the quantity
+                            qut = float(input(f'How much kilo of {database["vegetables"][item]["name"].lower()} do you need ? : ')) #Asking the quantity
                             if qut < 0:
                                 print('The quantity should be more than 0')                    #Checking the quantity is more than 0
                                 buy(l,username)
@@ -299,14 +299,14 @@ def buy(l,username):
 
                             database['vegetables'][item]['stock'] = database['vegetables'][item]['stock'] - qut     
 
-                            print(f"Remaining Stocks = {database['vegetables'][item]['stock']}")
+                            print(f"Remaining Stocks = {database['vegetables'][item]['stock']} kg")
 
                             if database['vegetables'][item]['stock'] == 0:                   
                                 del database['vegetables'][item]
 
                             
                         elif item.lower() in database['fruits']:
-                            qut = float(input(f'How much kilo do you need for {database["fruits"][item]["name"]} : '))
+                            qut = float(input(f'How much kilo of {database["fruits"][item]["name"].lower()} do you need ? : '))
                             if qut < 0:
                                 print('The quantity should be more than 0')                    #Checking the quantity is more than 0
                                 buy(l,username)
@@ -322,7 +322,7 @@ def buy(l,username):
 
                             database['fruits'][item]['stock'] = database['fruits'][item]['stock'] - qut     
 
-                            print(f"Remaining Stocks = {database['fruits'][item]['stock']}")
+                            print(f"Remaining Stocks = {database['fruits'][item]['stock']} kg")
 
                             if database['fruits'][item]['stock'] == 0:                   
                                 del database['fruits'][item]
@@ -563,7 +563,6 @@ def main():
             else:
                 
                 time.sleep(1)
-                print(admin)
                 if admin == False :
                     
                     list1(database)
