@@ -163,10 +163,14 @@ database = {     #The Whole Database .
     }
 }
 # Function to create a new user account
-def create_user(name):                   
-    print('SIGN-UP')
-    print('NOTE : Sorry, Due to the limited knowledge, Now creating an account will be deleted after the program closes. Use the default username and password...')
+def create_user(name):
+    print()                
+    print('\t\t\tSIGN-UP')
+    print()
+    print('NOTE : Sorry, Due to the limited knowledge, Now creating\nan account will be deleted after the program closes. Use\nthe default username and password...')
+    print()
     print('Creating a user account...')
+    print()
     username = input('Username : ')
     if username in database['user']:  #This will check if the user had already created account
         print('Same user has been found in our database. Please login...')
@@ -209,7 +213,7 @@ def sign_in():
             password1 = getpass.getpass(prompt = 'Password : ')   
             if password1 == database['user'][username]['password']:    #Checking if the given password is correct with database
                 time.sleep(1)
-                print('Account logined..')
+                print('Account logged in...')
                 print()
                 print('Welcome',database['user'][username]['name'])
                 username1 = username
@@ -589,7 +593,8 @@ def main():
                             break
                     else:
                         time.sleep(1)
-                        print('Thank you for coming')
+                        print()
+                        print('\t\t\tThank you for coming!!!')
                         time.sleep(5)
                     break
                 elif admin == True:
@@ -603,10 +608,15 @@ if __name__ == "__main__":
     main()
     while True:
         time.sleep(2)
-        choice = input("Press 'q' to quit or any other key to continue shopping : ")  #Asking the user if they want to continue shopping
+        print()
+        choice = input("Enter 'q' to quit or any other key to proceed to the next customer : ")  #Asking the user if they want to quit or proceed to the next customer
+        print()
         if choice.lower() == 'q':
-            print('Thank you for coming\nVisit again!!!')
+            print('\t\t\tThank you for coming!!!')
+            print('\t\t\t   Visit again!!!')
+            print()
             print("Exiting the program...")
+            print()
             break
         else:
             print('NEXT CUSTOMER PLEASE...')
