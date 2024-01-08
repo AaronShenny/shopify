@@ -490,7 +490,7 @@ def adminf():
                         print()
                         #print(i)
                         print('|------------------------------------|')
-                        print('|'.ljust(10),'USERNAME : ',i.upper(),'|')
+                        print('|'.ljust(10),'USERNAME : ',i.upper().ljust(13),'|')
                         print('|------------------------------------|')
                         print('|'.ljust(8),'ITEM'.ljust(15),'QUANTITY'.ljust(11),'|')
                         print('|------------------------------------|')
@@ -516,7 +516,14 @@ def addInfo(var):
     f.write(f'{var_name} = {var}\n')
     f.close()
 def getInfo(var):
-    
+    file_path = Path('data.txt')
+    for name, value in globals().items():  # Use locals() for local variables
+        if value is var:
+            
+            var_name = name
+    if not file_path.exists():
+        var_name = {}
+        return  var_name # or handle as needed if the file doesn't exist
     with open(Path('data.txt'), 'r') as file:
     # Read each line in the file
         for line in file:
