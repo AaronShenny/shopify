@@ -275,17 +275,19 @@ def buy(l,username,broughtitems,userbuy):
                             quantity = float(input(f'How much kilo of {database["vegetables"][item]["name"]} do you need ? : ')) #Asking the change
                             t = product,quantity   #Packing the tuple
                             l.remove(i)            #Removing the existing tuple
+                           
+                            l.append(t)            #Adding the new tuple into list
                             print(f'Product : {database["vegetables"][item]["name"]}')
                             print(f'Quantity : {i[1]}')
-                            l.append(t)            #Adding the new tuple into list
                         elif i[0].lower() in database['fruits']:
                             product,quantity = i   #Unpacking the tuple to change
                             quantity = float(input(f'How much kilo of {database["fruits"][item]["name"]} do you need ? : ')) #Asking the change
                             t = product,quantity   #Packing the tuple
                             l.remove(i)            #Removing the existing tuple
+                            
+                            l.append(t)
                             print(f'Product : {database["fruits"][item]["name"]}')
                             print(f'Quantity : {i[1]}')
-                            l.append(t)
         elif item == '':
             print('Enter a vaild product')
         else:
