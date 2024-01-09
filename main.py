@@ -574,7 +574,7 @@ if not getInfo('user_buy'):
    # print(user_buy)
 else:
     user_buy =  eval(getInfo('user_buy'))
-
+print()
 
 time.sleep(1)
 n=0
