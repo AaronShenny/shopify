@@ -164,13 +164,6 @@ database = {     #The Whole Database .
 }
 # Function to create a new user account
 def create_user(name):
-    print()                
-    print('\t\t\tSIGN-UP')
-    print()
-    print('NOTE : Sorry, Due to the limited knowledge, Now creating\nan account will be deleted after the program closes. Use\nthe default username and password...')
-    print()
-    print('Creating a user account...')
-    print()
     username = input('Username : ')
     if username in database['user']:  #This will check if the user had already created account
         print('Same user has been found in our database. Please login...')
@@ -186,7 +179,8 @@ def create_user(name):
                 'password': password
             }
         except Exception as Error:
-            print('Error : ', Error)      
+            print('Error : ', Error)
+        time.sleep(2)
         print('Account created successfully...')
 
 # Function for user sign-in             
@@ -228,12 +222,14 @@ def sign_in():
                    
                 return username,login,admin                                  #Returning username and login variable 
         else:  
+            print()
             time.sleep(1)
-            print('Account not Found')
+            print('Account not found...')
             time.sleep(1)                                              #If the account didnt found on the database then create_user() is called
-            print('Creating an account...')
+            print('Please sign up to continue...')
             time.sleep(1)
             print()
+            print('\t\t\tSIGN-UP') #NOTE : Due to the limited knowledge, Now creating an account will be deleted after the program closes. Use the default username and password...')
             print()
             name  = input('Full name : ')
             create_user(name)
@@ -272,7 +268,7 @@ def buy(l,username,broughtitems,userbuy):
                         if i[0].lower() in database['vegetables']:
                         
                             product,quantity = i   #Unpacking the tuple to change
-                            quantity = float(input(f'How much kilo of {database["vegetables"][item]["name"]} do you need ? : ')) #Asking the change
+                            quantity = float(input(f'How much kilo of {database["vegetables"][item]["name"].lower()} do you need ? : ')) #Asking the change
                             t = product,quantity   #Packing the tuple
                             l.remove(i)            #Removing the existing tuple
                            
@@ -281,7 +277,7 @@ def buy(l,username,broughtitems,userbuy):
                             print(f'Quantity : {quantity}')
                         elif i[0].lower() in database['fruits']:
                             product,quantity = i   #Unpacking the tuple to change
-                            quantity = float(input(f'How much kilo of {database["fruits"][item]["name"]} do you need ? : ')) #Asking the change
+                            quantity = float(input(f'How much kilo of {database["fruits"][item]["name"].lower()} do you need ? : ')) #Asking the change
                             t = product,quantity   #Packing the tuple
                             l.remove(i)            #Removing the existing tuple
                             
@@ -599,7 +595,6 @@ def main():
                     if buy_accept == 'yes':
                         time.sleep(1)
                         l = []
-                        
                         print()
                         print('NOTE : Please enter "0" or "exit" once you have completed adding the products.')
                         broughtitems = []
