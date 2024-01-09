@@ -241,15 +241,15 @@ def sign_in():
 # Function for purchasing items
 def buy(l,username,broughtitems,userbuy):
     print(broughtitems) 
-    if broughtitems == [] :
-
+    if broughtitems == [] :                             #brougthitems  =  list which containing the product names that user has brougth locally
+                                                        #userbuy       =  list containing both product and quantity
         brought_items = []
     else:
         #brought_items = []
         brought_items = broughtitems
     if user_buy != []:
         l = userbuy
-    print('test',brought_items)
+    
     print()
     while True:
         print()
@@ -276,7 +276,7 @@ def buy(l,username,broughtitems,userbuy):
                             t = product,quantity   #Packing the tuple
                             l.remove(i)            #Removing the existing tuple
                             print(f'Product : {database["vegetables"][item]["name"]}')
-                            print(f'Quantity : {database["vegetables"][item]["stock"]}')
+                            print(f'Quantity : {i[1]}')
                             l.append(t)            #Adding the new tuple into list
                         elif i[0].lower() in database['fruits']:
                             product,quantity = i   #Unpacking the tuple to change
@@ -284,7 +284,7 @@ def buy(l,username,broughtitems,userbuy):
                             t = product,quantity   #Packing the tuple
                             l.remove(i)            #Removing the existing tuple
                             print(f'Product : {database["fruits"][item]["name"]}')
-                            print(f'Quantity : {database["fruits"][item]["stock"]}')
+                            print(f'Quantity : {i[1]}')
                             l.append(t)
         elif item == '':
             print('Enter a vaild product')
@@ -351,13 +351,13 @@ def buy(l,username,broughtitems,userbuy):
         l1 = existing_items + l
         user_buy[username] = l1
         addInfo(user_buy)
-        print(l)
+        
         return user_buy, l , brought_items
         
     else:
         user_buy[username] = l
         addInfo(user_buy)
-        print(l)
+        
         return user_buy,l , brought_items
         
              
@@ -368,6 +368,9 @@ def list1(database):
     fruits_data = database.get('fruits')
 
     if not vegetable_data:
+        print("No vegetable data found!")                                                    #Checking if the database is empty or not
+        return
+    if not fruits_data:
         print("No vegetable data found!")                                                    #Checking if the database is empty or not
         return
     print()
@@ -395,12 +398,6 @@ def recipt(username,brought_items,broughtitems,userbuy):                        
     confirm =  input('Anything else ? : ').lower()                    #Asking the user if they want to buy anything else
     if confirm == 'yes':
         l =  userbuy
-        print('userbuy',userbuy)
-        print(l)
-        print('USERNAME' , username)
-        print('brought_items',brought_items)
-        print('broughtitems',broughtitems)
-        print('userbuy',userbuy)
         userbuy, brought_items ,broughtitems = buy(userbuy,username,broughtitems,brought_items)
     total_amount = 0  # Initialize the total amount variable
 
@@ -606,12 +603,11 @@ def main():
                         broughtitems = []
                         userbuy = []
                         userbuy, l,broughtitems = buy(l,username,broughtitems,userbuy)
-                        print('list',l)
-                        print(broughtitems)
+                        
                         if user_buy[username] == []:
                             pass
                         else:
-                            print(broughtitems)
+                            
                             recipt(username,l,broughtitems,userbuy)
                             break
                     else: 
