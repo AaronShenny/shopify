@@ -1,0 +1,1 @@
+user_buy = {'user': [('Apple', 3.0), ('Tomato', 4.0), ('Tomato', 3.0), ('Apple', 3.0), ('Banana', 4.0), ('Apple', 3.0), ('Apple', 3.0), ('Apple', 3.0), ('Tomato', 3.0), ('Apple', 3.0), ('Apple', 4.0), ('Tomato', 4.0), ('Apple', 4.0), ('Tomato', 3.0), ('Tomato', 5.0), ('Tomato', 3.0), ('Onion', 4.0)]}

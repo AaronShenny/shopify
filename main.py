@@ -239,8 +239,18 @@ def sign_in():
             create_user(name)
 
 # Function for purchasing items
-def buy(l,username):                
-    brought_items = []
+def buy(l,username,broughtitems,userbuy):
+    print(broughtitems) 
+    if broughtitems == [] :
+
+        brought_items = []
+    else:
+        #brought_items = []
+        brought_items = broughtitems
+    if user_buy != []:
+        l = userbuy
+    print('test',brought_items)
+    print()
     while True:
         print()
         item = input('Enter an item : ').lower()                        #User enters the product they need
@@ -249,7 +259,7 @@ def buy(l,username):
         elif item in brought_items:
             print()                                                     #Checking the cart if the user had already brougtj
             print('Item is already in the cart!!!')
-            for i in l:
+            for i in l :
                 if item.title() == i[0]: 
                     print(f'Product : {i[0]}')
                     print(f'Quantity : {i[1]}') 
@@ -290,11 +300,11 @@ def buy(l,username):
                             qut = float(input(f'How much kilo of {database["vegetables"][item]["name"].lower()} do you need ? : ')) #Asking the quantity
                             if qut < 0:
                                 print('The quantity should be more than 0')                    #Checking the quantity is more than 0
-                                buy(l,username)
+                                buy(l,username,broughtitems,userbuy)
                                 break
                             if qut > database['vegetables'][item]['stock']:                    #Checking the given quantity is less than the stock
                                 print(f'The quantity should be less than the TOTAL STOCK, Remaining Stock : {database["vegetables"][item]["stock"]}')
-                                buy(l,username)
+                                buy(l,username,broughtitems,userbuy)
                                 break
 
                             brought_items.append(item)                                          #Adding the item into the cart
@@ -313,11 +323,11 @@ def buy(l,username):
                             qut = float(input(f'How much kilo of {database["fruits"][item]["name"].lower()} do you need ? : '))
                             if qut < 0:
                                 print('The quantity should be more than 0')                    #Checking the quantity is more than 0
-                                buy(l,username)
+                                buy(l,username,broughtitems,userbuy)
                                 break
                             if qut > database['fruits'][item]['stock']:                    #Checking the given quantity is less than the stock
                                 print(f'The quantity should be less than the TOTAL STOCK, Remaining Stock : {database["fruits"][item]["stock"]}')
-                                buy(l,username)
+                                buy(l,username,broughtitems,userbuy)
                                 break
 
                             brought_items.append(item)                                          #Adding the item into the cart
@@ -341,12 +351,14 @@ def buy(l,username):
         l1 = existing_items + l
         user_buy[username] = l1
         addInfo(user_buy)
-        return user_buy,l
+        print(l)
+        return user_buy, l , brought_items
         
     else:
         user_buy[username] = l
         addInfo(user_buy)
-        return user_buy,l
+        print(l)
+        return user_buy,l , brought_items
         
              
 
@@ -379,11 +391,17 @@ def list1(database):
         print(f'|{veg_name}|{veg_price}|{veg_stock}|\t\t|{fruit_name}|{fruit_price}|{fruit_stock}|')
     print("------------------------------------------\t\t -----------------------------------------")
 
-def recipt(username,brought_items):                                                   #Function for printing the recipt
+def recipt(username,brought_items,broughtitems,userbuy):                                                   #Function for printing the recipt
     confirm =  input('Anything else ? : ').lower()                    #Asking the user if they want to buy anything else
     if confirm == 'yes':
-        l =  user_buy.get(username)
-        userbuy, brought_items = buy(l,username)
+        l =  userbuy
+        print('userbuy',userbuy)
+        print(l)
+        print('USERNAME' , username)
+        print('brought_items',brought_items)
+        print('broughtitems',broughtitems)
+        print('userbuy',userbuy)
+        userbuy, brought_items ,broughtitems = buy(userbuy,username,broughtitems,brought_items)
     total_amount = 0  # Initialize the total amount variable
 
     print()
@@ -585,13 +603,18 @@ def main():
                         
                         print()
                         print('NOTE : Please enter "0" or "exit" once you have completed adding the products.')
-                        userbuy, brought_items = buy(l,username)
+                        broughtitems = []
+                        userbuy = []
+                        userbuy, l,broughtitems = buy(l,username,broughtitems,userbuy)
+                        print('list',l)
+                        print(broughtitems)
                         if user_buy[username] == []:
                             pass
                         else:
-                            recipt(username,brought_items)
+                            print(broughtitems)
+                            recipt(username,l,broughtitems,userbuy)
                             break
-                    else:
+                    else: 
                         time.sleep(1)
                         print()
                         print('\t\t\tThank you for coming!!!')
