@@ -392,7 +392,7 @@ def list1(database):
         print(f'|{veg_name}|{veg_price}|{veg_stock}|\t\t|{fruit_name}|{fruit_price}|{fruit_stock}|')
     print("------------------------------------------\t\t -----------------------------------------")
 
-def recipt(username,brought_items,broughtitems,userbuy):                                                   #Function for printing the recipt
+def receipt(username,brought_items,broughtitems,userbuy):                                                   #Function for printing the receipt
     confirm =  input('Anything else ? : ').lower()                    #Asking the user if they want to buy anything else
     if confirm == 'yes':
         l =  userbuy
@@ -605,7 +605,7 @@ def main():
                             pass
                         else:
                             
-                            recipt(username,l,broughtitems,userbuy)
+                            receipt(username,l,broughtitems,userbuy)
                             break
                     else: 
                         time.sleep(1)
